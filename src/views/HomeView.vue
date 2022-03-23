@@ -1,22 +1,36 @@
 <script setup>
 import TheWelcome from '@/components/TheWelcome.vue'
 import WedLogo from '@/components/atoms/WedLogo.vue'
+import NavMenu from '../components/NavMenu.vue';
 </script>
 
 <template>
   <main class="flex-container">
     <section class="col-left">
       <WedLogo class="logo"></WedLogo>
+      <div class="content">
+        <p class="text-lg">5th August 2022</p>
+        <p class="text-lg">Marine Hotel Ballycastle</p>
+      </div>
+      <NavMenu></NavMenu>
     </section>
     <section class="col-right">
     </section>
   </main>
 </template>
-<style scoped>
+<style>
+  .text-lg{
+    font-size: 1.5rem;
+    text-align: center;
+  }
   .flex-container{
     min-height: 100vh;
     overflow: hidden;
     display: flex;
+    color: #212121;
+  }
+  .content{
+    flex-grow: 1;
   }
   .col-left, .col-right{
     box-sizing: border-box;

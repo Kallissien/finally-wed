@@ -1,7 +1,17 @@
+<script setup>
+import TheWelcome from '@/components/TheWelcome.vue'
+import WedLogo from '@/components/atoms/WedLogo.vue'
+import NavMenu from '../components/NavMenu.vue';
+</script>
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+  <main class="flex-container">
+    <section class="col-left">
+      <h1>About</h1>
+      <NavMenu></NavMenu>
+    </section>
+    <section class="col-right">
+    </section>
+  </main>
 </template>
 
 <style>
