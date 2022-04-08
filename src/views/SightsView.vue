@@ -1,15 +1,16 @@
 <script setup>
-import TheWelcome from '@/components/TheWelcome.vue'
-import WedLogo from '@/components/atoms/WedLogo.vue'
-import NavMenu from '../components/NavMenu.vue';
+import LNav from "@/components/molecules/l-nav.vue";
+import LSights from "@/components/molecules/l-sights.vue";
+import LSightsMap from "@/components/molecules/l-map-sights.vue";
 </script>
 <template>
   <main class="flex-container">
     <section class="col-left">
-      <h1>About</h1>
-      <NavMenu></NavMenu>
+      <l-sights></l-sights>
+      <l-nav></l-nav>
     </section>
     <section class="col-right">
+      <l-sights-map></l-sights-map>
     </section>
   </main>
 </template>
