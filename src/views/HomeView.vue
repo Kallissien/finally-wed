@@ -9,7 +9,7 @@ import LNav from "@/components/molecules/l-nav.vue";
       <l-home></l-home>
       <l-nav></l-nav>
     </section>
-    <section class="col-right"></section>
+    <section class="col-right image-right"></section>
   </main>
 </template>
 <style scoped>

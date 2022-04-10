@@ -3,7 +3,9 @@ import { RouterLink, RouterView } from "vue-router";
 </script>
 
 <template>
-  <RouterView />
+  <transition mode="in-out" name="slide-fade">
+    <RouterView />
+  </transition>
 </template>
 
 <style>
@@ -59,5 +61,19 @@ import { RouterLink, RouterView } from "vue-router";
     width: 100vw;
     height: 50vh;
   }
+}
+/* Animations */
+.slide-fade-enter-active {
+  transition: all 0.8s ease-out;
+}
+
+.slide-fade-leave-active {
+  transition: all 1.5s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
 }
 </style>
