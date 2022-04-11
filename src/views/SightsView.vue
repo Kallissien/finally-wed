@@ -1,12 +1,12 @@
 <script setup>
 import LNav from "@/components/molecules/l-nav.vue";
-import LSights from "@/components/molecules/l-sights.vue";
-import LSightsMap from "@/components/molecules/l-map-sights.vue";
+import LSightsContent from "@/components/organisms/l-sights-content.vue";
+import LSightsMap from "@/components/organisms/l-sights-map.vue";
 </script>
 <template>
   <main class="flex-container">
     <section class="col-left">
-      <l-sights></l-sights>
+      <l-sights-content></l-sights-content>
       <l-nav></l-nav>
     </section>
     <section class="col-right">
