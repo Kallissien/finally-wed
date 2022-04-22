@@ -1,5 +1,4 @@
 <template>
-
   <div style="height: 100vh; color: #fff">
     <div class="info" style="height: 10%">
       <span>Center: {{ center }}</span>
@@ -14,41 +13,49 @@
       @update:center="centerUpdated"
       @update:bounds="boundsUpdated"
     >
-      <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
+      <l-tile-layer></l-tile-layer>
       <l-marker :lat-lng="[55.205078, -6.240239]"></l-marker>
     </l-map>
   </div>
 </template>
 
 <script>
-import {LMap, LTileLayer, LMarker} from '@vue-leaflet/vue-leaflet';
+import { LMap, LTileLayer, LMarker } from "@vue-leaflet/vue-leaflet";
 
 export default {
   components: {
     LMap,
     LTileLayer,
-    LMarker
+    LMarker,
   },
-  data () {
+  data() {
     return {
-      url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+      url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
       attribution:
         '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
       zoom: 11,
       center: [55.203643, -6.255379],
-      bounds: null
+      bounds: null,
+      mapPoints: [
+        {
+          name: "Marine Hotel",
+          desc: "The Venue",
+          lat: "55.205078",
+          lng: "-6.240239",
+        },
+      ],
     };
   },
   methods: {
-    zoomUpdated (zoom) {
+    zoomUpdated(zoom) {
       this.zoom = zoom;
     },
-    centerUpdated (center) {
+    centerUpdated(center) {
       this.center = center;
     },
-    boundsUpdated (bounds) {
+    boundsUpdated(bounds) {
       this.bounds = bounds;
-    }
-  }
-}
+    },
+  },
+};
 </script>

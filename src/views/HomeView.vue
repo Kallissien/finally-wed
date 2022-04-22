@@ -12,5 +12,4 @@ import LNav from "@/components/molecules/l-nav.vue";
     <section class="col-right image-right"></section>
   </main>
 </template>
-<style scoped>
-</style>
+<style scoped></style>

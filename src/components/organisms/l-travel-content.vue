@@ -1,7 +1,6 @@
-<script setup>
-</script>
+<script setup></script>
 <template>
-    <div class="content">
-        <h1>Travel</h1>
-    </div>
+  <div class="content">
+    <h1>Travel</h1>
+  </div>
 </template>

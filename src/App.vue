@@ -11,9 +11,8 @@ import { RouterLink, RouterView } from "vue-router";
 </template>
 
 <style>
-@import "@/assets/base.css";
-
-.flex{
+@import "@/assets/styles/base.css";
+.flex {
   display: flex;
 }
 .text-lg {
@@ -43,9 +42,8 @@ import { RouterLink, RouterView } from "vue-router";
   padding: 4rem;
 }
 .col-right {
-  
 }
-.image-right{
+.image-right {
   background-image: url("@/assets/wedding-pic-bw.png");
   background-size: cover;
   background-position: center;
@@ -75,7 +73,7 @@ import { RouterLink, RouterView } from "vue-router";
 
 .slide-fade-enter-from,
 .slide-fade-leave-to {
-  transform: translateX(2rem);
+  transform: scale(0.99);
   opacity: 0;
 }
 </style>
