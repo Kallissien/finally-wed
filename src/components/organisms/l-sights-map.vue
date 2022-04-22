@@ -13,7 +13,6 @@
       @update:center="centerUpdated"
       @update:bounds="boundsUpdated"
     >
-      <l-tile-layer></l-tile-layer>
       <l-marker :lat-lng="[55.205078, -6.240239]"></l-marker>
     </l-map>
   </div>

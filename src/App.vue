@@ -34,13 +34,6 @@ import { RouterLink, RouterView } from "vue-router";
   width: 50vw;
   height: 100vh;
 }
-.col-left {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: #fff;
-  padding: 4rem;
-}
 .col-right {
 }
 .image-right {

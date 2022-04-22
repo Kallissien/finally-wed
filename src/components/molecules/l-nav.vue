@@ -14,8 +14,7 @@ import LDivider from "../atoms/l-divider.vue";
 @import "@/assets/styles/variables.scss";
 nav {
   font-size: 1.2rem;
-  margin: auto;
-  margin-top: 1rem;
+  margin: 2rem auto 2rem auto;
 }
 nav > a {
   margin-right: 1rem;

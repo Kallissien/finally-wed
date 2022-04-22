@@ -12,11 +12,17 @@
 <style lang="scss">
 @import '@/assets/styles/variables.scss';
 .col-left{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #fff;
     h1{
         font-size: $heading;
     }
     &__content{
         flex-grow: 1;
+        padding: 4rem;
+        width: 100%;
     }
 }
 </style>
