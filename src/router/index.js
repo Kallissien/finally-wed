@@ -38,9 +38,6 @@ const router = createRouter({
     {
       path: "/sightseeing",
       name: "sightseeing",
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: SightsView,
       meta: {
         title: "Sightseeing",
@@ -55,9 +52,6 @@ const router = createRouter({
     {
       path: "/rsvp",
       name: "rsvp",
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: RsvpView,
       meta: {
         title: "RSVP",

@@ -1,12 +1,11 @@
 <script setup>
 import LNav from "@/components/molecules/l-nav.vue";
-import LInput from "@/components/atoms/l-input.vue";
 </script>
 <template>
   <main class="col-full">
     <section class="col-full__content">
       <h1>RSVP</h1>
-       <form class="form" name="rsvp" netlify>
+       <form class="form" name="rsvp">
         <div class="form-section col">
           <p class="form-header">Please enter your name</p>
           <label class="input-item">
