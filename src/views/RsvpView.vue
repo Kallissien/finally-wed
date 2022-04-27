@@ -1,5 +1,14 @@
 <script setup>
 import LNav from "@/components/molecules/l-nav.vue";
+import { ref, computed } from 'vue'
+
+const isGoingAnswer = ref()
+const isGoing = computed(() => {
+  if(isGoingAnswer.value === 'yes'){
+    return true
+  }
+  else return false
+})
 </script>
 <template>
   <main class="col-full">
@@ -9,22 +18,22 @@ import LNav from "@/components/molecules/l-nav.vue";
         <div class="form-section col">
           <p class="form-header">Please enter your name</p>
           <label class="input-item">
-              <input type="text" name="name" placeholder="Enter your name" required>
+              <input class="input-field" type="text" name="name" placeholder="Enter your full name" required>
           </label>
         </div>
         <p class="form-header">Are you attending on the day?</p>
         <div class="form-section row attending">
             <label class="input-item">
               <p>Graciously accept</p>
-              <input type="radio" name="attending" value="yes" v-model="this.isGoing" required>
+              <input type="radio" name="attending" value="yes" v-model="isGoingAnswer" required>
             </label>
             <label class="input-item">
               <p>Respectfully decline</p>
-              <input type="radio" name="attending" value="no" v-model="this.isGoing" required>
+              <input type="radio" name="attending" value="no" v-model="isGoingAnswer" required>
             </label>
         </div>
         <transition mode="out-in" name="slide-fade">
-          <section v-if="areTheyGoing" class="form-section col menu">
+          <section v-if="isGoing" class="form-section col menu">
             <p class="form-header">Please fill out your menu options</p>
 
             <div class="form-section col" v-for="course in menu" :key="course.id">
@@ -150,17 +159,9 @@ export default {
             }
           ]
         }
-      },
-      isGoing: ""
+      }
     }
   },
-  computed: {
-    areTheyGoing(){
-      if(this.isGoing == "yes") {
-        return true
-      } else return false
-    }
-  }
 }
 </script>
 <style lang="scss">
@@ -189,13 +190,31 @@ form{
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-right: 2.2rem;
+    margin: 0.5rem 1rem;
     &[type=text]{
        width: 100%;
     }
     p{
       margin-right: 0.5rem;
+    }  
+    input {
+    padding: 0.7rem 0.5rem;
+    border-radius: 4px;
+    border: solid 1px $primary-100;
+    &[type="text"] {
+      width: 100%;
+      max-width: 500px;
     }
+  }
+  &.radio {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    p {
+      margin-right: 0.7rem;
+    }
+  }
   }
   .attending{
     font-size: 1.3rem;
