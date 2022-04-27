@@ -51,7 +51,7 @@ export default {
     return {
       personalDetails:[
         {
-          id: 1,
+          id: "1",
           name: "name",
           label: "Name",
           type: "text",
@@ -60,12 +60,12 @@ export default {
       ],
       menu: {
         soup: {
-          id: 1,
+          id: "1",
           name: "Soup",
           options:
           [
             {
-              id: 1.1,
+              id: "1.1",
               name: "soup",
               label1: "Comber potato & leek",
               label2: "crispy parsnips",
@@ -74,26 +74,26 @@ export default {
           ],
         },
         starter: {
-          id: 2,
+          id: "2",
           name: "Starter",
           options:
           [
             {
-              id: 2.1,
+              id: "2.1",
               name: "starter",
               label1: "Smoked cheese and spring onion fishcake",
               label2: "with mixed leaves, sour cream and crispy dulse.",
               type: "radio",
             },
             {
-              id: 2.2,
+              id: "2.2",
               name: "starter",
               label1: "Crispy ham hock and Gracehill black pudding croquettes",
               label2: "rocket leaves, homemade piccalilli and toasted sourdough.",
               type: "radio",
             },
             {
-              id: 2.3,
+              id: "2.3",
               name: "starter",
               label1: "Vegetarian option",
               label2: "sourced locally on the day",
@@ -102,26 +102,26 @@ export default {
           ]
         },
         main:{
-          id: 3,
+          id: "3",
           name: "Main",
           options:
           [
             {
-              id: 5,
+              id: "5",
               name: "main",
               label1: "Seared salmon fillet",
               label2: "smoked chorizo and prawn cream.",
               type: "radio",
             },
             {
-              id: 6,
+              id: "6",
               name: "main",
               label1: "Roast county Antrim turkey and ham",
               label2: "cranberry stuffing and rich pan jus",
               type: "radio",
             },
             {
-              id: 7,
+              id: "7",
               name: "main",
               label1: "Vegetarian option",
               label2: "sourced locally on the day",
@@ -130,18 +130,18 @@ export default {
           ],
         },
         dessert: {
-          id: 4,
+          id: "4",
           name: "Dessert",
           options: [
             {
-              id: 4.1,
+              id: "4.1",
               name: "Sticky toffee pudding",
               label1: "Seared salmon fillet",
               label2: "Bushmills toffee sauce and Morelli's honeycomb ice cream",
               type: "radio",
             },
             {
-              id: 4.2,
+              id: "4.2",
               name: "Spiced apple and cinnamon crumble",
               label1: "Roast county Antrim turkey and ham",
               label2: "Morelli's vanilla ice cream",
@@ -155,7 +155,7 @@ export default {
   },
   computed: {
     areTheyGoing(){
-      if(isGoing == "yes") {
+      if(this.isGoing == "yes") {
         return true
       } else return false
     }
@@ -172,7 +172,7 @@ form{
   width: 100%;
   .form-section{
     display: flex;
-    width: 100%;
+    width: auto;
     align-items: center;
     margin-bottom: 2rem;
     &.row{
@@ -246,6 +246,27 @@ form{
     min-height: 100vh;
     display: flex;
     align-items: center;
+  }
+}
+.col-full {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  color: $text-color;
+  overflow-x: hidden;
+  max-width: 100vw;
+  min-height: 100vh;
+  h1 {
+    font-size: $heading;
+  }
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+    padding: 2rem;
+    width: 100%;
   }
 }
 </style>
