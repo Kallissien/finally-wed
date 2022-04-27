@@ -14,7 +14,7 @@ const isGoing = computed(() => {
   <main class="col-full">
     <section class="col-full__content">
       <h1>RSVP</h1>
-       <form class="form" name="rsvp">
+       <form class="form" name="rsvp" netlify>
         <div class="form-section col">
           <p class="form-header">Please enter your name</p>
           <label class="input-item">
