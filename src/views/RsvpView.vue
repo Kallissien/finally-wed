@@ -155,7 +155,7 @@ export default {
   },
   computed: {
     areTheyGoing(){
-      if(this.isGoing == "yes") {
+      if(isGoing == "yes") {
         return true
       } else return false
     }
