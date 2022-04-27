@@ -8,7 +8,9 @@ import LLogo from "@/components/atoms/l-logo.vue";
       <p class="text-lg">5th August 2022</p>
       <p class="text-lg">Marine Hotel Ballycastle</p>
     </h1>
-    <p>Please <router-link to="/rsvp">RSVP</router-link> to let us know whether you can make it</p>
-    
+    <p>
+      Please <router-link to="/rsvp">RSVP</router-link> to let us know whether
+      you can make it
+    </p>
   </div>
 </template>

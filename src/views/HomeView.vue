@@ -1,8 +1,6 @@
 <script setup>
 import LHome from "@/components/molecules/l-home.vue";
-import LNav from "@/components/molecules/l-nav.vue";
 import LColLeft from "../components/molecules/l-col-left.vue";
-
 </script>
 
 <template>

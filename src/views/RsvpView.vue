@@ -1,13 +1,12 @@
 <script setup>
 import LNav from "@/components/molecules/l-nav.vue";
-import LRsvpForm from "../components/organisms/l-rsvp-form.vue";
-import LColFull from "../components/molecules/l-col-full.vue";
+import LInput from "@/components/atoms/l-input.vue";
 </script>
 <template>
-  <main class="full-width">
-    <l-col-full>
+  <main class="col-full">
+    <section class="col-full__content">
       <h1>RSVP</h1>
-       <form class="form" name="rsvp" data-netlify="true">
+       <form class="form" name="rsvp" netlify>
         <div class="form-section col">
           <p class="form-header">Please enter your name</p>
         <l-input v-for="data in personalDetails" :key="data.id" :iName="data.name" :iType="data.type" :iPlaceholder="data.placeholder" :isRequired="true">
@@ -41,8 +40,9 @@ import LColFull from "../components/molecules/l-col-full.vue";
           </section>
         </transition>
         <button type="submit">Send Reply</button>
-      </form>
-    </l-col-full>
+      </form>   
+    </section>
+    <l-nav></l-nav>
   </main>
 </template>
 <script>

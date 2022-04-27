@@ -54,13 +54,13 @@ import { RouterLink, RouterView } from "vue-router";
   .col-right {
     width: 100vw;
   }
-  .col-left{
+  .col-left {
     height: 60vh;
-    &.content{
+    &.content {
       padding: 2rem 0;
     }
   }
-  .col-right{
+  .col-right {
     height: 40vh;
     overflow: hidden;
   }
