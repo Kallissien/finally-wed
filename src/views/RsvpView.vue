@@ -9,8 +9,9 @@ import LInput from "@/components/atoms/l-input.vue";
        <form class="form" name="rsvp" netlify>
         <div class="form-section col">
           <p class="form-header">Please enter your name</p>
-        <l-input v-for="data in personalDetails" :key="data.id" :iName="data.name" :iType="data.type" :iPlaceholder="data.placeholder" :isRequired="true">
-        </l-input>
+          <label class="input-item">
+              <input type="text" name="name" placeholder="Enter your name" required>
+          </label>
         </div>
         <p class="form-header">Are you attending on the day?</p>
         <div class="form-section row attending">
@@ -29,12 +30,13 @@ import LInput from "@/components/atoms/l-input.vue";
 
             <div class="form-section col" v-for="course in menu" :key="course.id">
               <p class="menu-course_header">{{ course.name }}</p>
-              <l-input v-for="data in course.options" :key="data.id" :iName="data.name" :iId="data.id" :iType="data.type" :iPlaceholder="data.placeholder" >
+              <label class="input-item" v-for="data in course.options" :key="data.id" :iName="data.name">
                 <div class="menu-item">
                   <p class="menu-item_heading">{{ data.label1 }}</p>
                   <p class="menu-item_sub">{{ data.label2 }}</p>
                 </div>
-              </l-input>
+                <input :type="data.type" :name="data.name" :id="data.id">
+              </label>
             </div>
 
           </section>
