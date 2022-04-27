@@ -63,6 +63,20 @@ const router = createRouter({
         ],
       },
     },
+    {
+      path: "/thanks",
+      name: "thanks",
+      component: thanksView,
+      meta: {
+        title: "Thanks for using the site!",
+        metaTags: [
+          {
+            name: "description",
+            content: "",
+          },
+        ],
+      },
+    },
   ],
 });
 
