@@ -2,8 +2,8 @@
     import lNav from './l-nav.vue';
 </script>
 <template>
-    <section class="col-left">
-        <article class="col-left__content">
+    <section class="col-full">
+        <article class="col-full__content">
             <slot></slot>
         </article>
         <l-nav></l-nav>
@@ -11,17 +11,14 @@
 </template>
 <style lang="scss">
 @import '@/assets/styles/variables.scss';
-.col-left{
+.col-full{
     display: flex;
     flex-direction: column;
     align-items: center;
     background: #fff;
-    width: 50vw;
-    height: 100vh;
-    @media screen and (max-width: $screen-md){
-        width: 100vw;
-        height: 60vh;
-    }
+    color: $text-color;
+    min-width: 100vw;
+    min-height: 100vh;
     h1{
         font-size: $heading;
     }

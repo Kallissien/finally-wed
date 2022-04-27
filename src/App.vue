@@ -10,7 +10,7 @@ import { RouterLink, RouterView } from "vue-router";
   </router-view>
 </template>
 
-<style>
+<style lang="scss">
 @import "@/assets/styles/base.css";
 .flex {
   display: flex;
@@ -34,7 +34,8 @@ import { RouterLink, RouterView } from "vue-router";
   width: 50vw;
   height: 100vh;
 }
-.col-right {
+.col-left {
+  overflow: auto;
 }
 .image-right {
   background-image: url("@/assets/wedding-pic-bw.png");
@@ -47,12 +48,21 @@ import { RouterLink, RouterView } from "vue-router";
 }
 @media screen and (max-width: 800px) {
   .flex-container {
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
   .col-left,
   .col-right {
     width: 100vw;
-    height: 50vh;
+  }
+  .col-left{
+    height: 60vh;
+    &.content{
+      padding: 2rem 0;
+    }
+  }
+  .col-right{
+    height: 40vh;
+    overflow: hidden;
   }
 }
 /* Animations */

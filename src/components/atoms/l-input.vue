@@ -1,7 +1,7 @@
 <template>
-    <label :for="iName" class="input-item">
+    <label :for="computedId" :class="'input-item ' + iType">
       <slot></slot>
-    <input :required="showRequired" :id="iName" :type="iType" :placeholder="iPlaceholder" :class="'mt-1 appearance-none block w-full px-3 py-2 border rounded-md shadow-sm placeholder-gray-400 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-800 dark:text-gray-50 dark:focus:ring-sky-400 dark:focus:border-sky-500 ' + border">
+    <input :required="showRequired" :id="computedId" :name="iName" :type="iType" :placeholder="iPlaceholder" :class="'mt-1 appearance-none block w-full px-3 py-2 border rounded-md shadow-sm placeholder-gray-400 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-800 dark:text-gray-50 dark:focus:ring-sky-400 dark:focus:border-sky-500 ' + border">
     <transition mode="out-in">
       <p v-if="error" class=""> {{ inputErrorMessage }}</p>
     </transition>
@@ -23,6 +23,9 @@ export default{
       type: String,
       default: ''
     },
+    iId: {
+      type: String,
+    },
     inputErrorMessage: {
       type: String,
       default: 'Error message'
@@ -38,6 +41,11 @@ export default{
     },
     border() {
       return ( this.error ? 'border-red-500' : 'border-gray-300' )
+    },
+    computedId() {
+      if(!this.iId){
+        return this.iName
+      }
     }
   },
   data(){
@@ -54,11 +62,23 @@ export default{
   flex-direction: column;
   margin-bottom: 1rem;
   width: 100%;
-  max-width: 400px;
   input{
     padding: 0.7rem 0.5rem;
     border-radius: 4px;
     border: solid 1px $primary-100;
+    &[type=text]{
+      width: 100%;
+      max-width: 500px;
+    }
+  }
+  &.radio{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    p{
+      margin-right: 0.7rem;
+    }
   }
 }
 /* Transitions */
