@@ -7,7 +7,7 @@ import LColFull from "../components/molecules/l-col-full.vue";
   <main class="full-width">
     <l-col-full>
       <h1>RSVP</h1>
-       <form class="form" name="rsvp" netlify>
+       <form class="form" name="rsvp" data-netlify="true">
         <div class="form-section col">
           <p class="form-header">Please enter your name</p>
         <l-input v-for="data in personalDetails" :key="data.id" :iName="data.name" :iType="data.type" :iPlaceholder="data.placeholder" :isRequired="true">
