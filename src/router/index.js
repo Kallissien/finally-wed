@@ -3,6 +3,7 @@ import HomeView from "@/views/HomeView.vue";
 import TravelView from "@/views/TravelView.vue";
 import SightsView from "@/views/SightsView.vue";
 import RsvpView from "@/views/RsvpView.vue";
+import thanksView from "@/views/thanksView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
