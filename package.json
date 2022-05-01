@@ -1,6 +1,7 @@
 {
   "name": "finally-wed",
   "version": "0.0.0",
+  "license": "None",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

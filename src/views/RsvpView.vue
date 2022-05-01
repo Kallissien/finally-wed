@@ -1,56 +1,13 @@
 <script setup>
 import LNav from "@/components/molecules/l-nav.vue";
 import { ref, computed } from 'vue'
-
-const isGoingAnswer = ref()
-const isGoing = computed(() => {
-  if(isGoingAnswer.value === 'yes'){
-    return true
-  }
-  else return false
-})
+import LRsvpForm from "../components/organisms/l-rsvp-form.vue";
 </script>
 <template>
   <main class="col-full">
     <section class="col-full__content">
       <h1>RSVP</h1>
-       <form class="form" action="/thanks" name="rsvp" method="POST" data-netlify="true">
-        <div class="form-section col">
-          <p class="form-header">Please enter your name</p>
-          <label class="input-item">
-              <input class="input-field" type="text" name="name" placeholder="Enter your full name" required>
-          </label>
-        </div>
-        <p class="form-header">Are you attending on the day?</p>
-        <div class="form-section row attending">
-            <label class="input-item">
-              <p>Graciously accept</p>
-              <input type="radio" name="attending" value="yes" v-model="isGoingAnswer" required>
-            </label>
-            <label class="input-item">
-              <p>Respectfully decline</p>
-              <input type="radio" name="attending" value="no" v-model="isGoingAnswer" required>
-            </label>
-        </div>
-        <transition mode="out-in" name="slide-fade">
-          <section v-if="isGoing" class="form-section col menu">
-            <p class="form-header">Please fill out your menu options</p>
-
-            <div class="form-section col" v-for="course in menu" :key="course.id">
-              <p class="menu-course_header">{{ course.name }}</p>
-              <label class="input-item" v-for="data in course.options" :key="data.id" :iName="data.name">
-                <div class="menu-item">
-                  <p class="menu-item_heading">{{ data.label1 }}</p>
-                  <p class="menu-item_sub">{{ data.label2 }}</p>
-                </div>
-                <input :type="data.type" :name="data.name" :id="data.id">
-              </label>
-            </div>
-
-          </section>
-        </transition>
-        <button type="submit">Send Reply</button>
-      </form>   
+        <l-rsvp-form></l-rsvp-form>
     </section>
     <l-nav></l-nav>
   </main>
