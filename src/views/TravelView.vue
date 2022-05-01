@@ -1,6 +1,7 @@
 <script setup>
 import LNav from "@/components/molecules/l-nav.vue";
 import LTravelContent from "@/components/organisms/l-travel-content.vue";
+import LTravelMap from "@/components/organisms/l-travel-map.vue";
 </script>
 <template>
   <main class="flex-container">
@@ -8,7 +9,9 @@ import LTravelContent from "@/components/organisms/l-travel-content.vue";
       <l-travel-content></l-travel-content>
       <l-nav></l-nav>
     </section>
-    <section class="col-right"></section>
+    <section class="col-right">
+      <l-travel-map></l-travel-map>
+    </section>
   </main>
 </template>
 

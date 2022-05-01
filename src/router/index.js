@@ -36,20 +36,20 @@ const router = createRouter({
         ],
       },
     },
-    {
-      path: "/sightseeing",
-      name: "sightseeing",
-      component: SightsView,
-      meta: {
-        title: "Sightseeing",
-        metaTags: [
-          {
-            name: "description",
-            content: "What to do while you wait",
-          },
-        ],
-      },
-    },
+    // {
+    //   path: "/sightseeing",
+    //   name: "sightseeing",
+    //   component: SightsView,
+    //   meta: {
+    //     title: "Sightseeing",
+    //     metaTags: [
+    //       {
+    //         name: "description",
+    //         content: "What to do while you wait",
+    //       },
+    //     ],
+    //   },
+    // },
     {
       path: "/rsvp",
       name: "rsvp",

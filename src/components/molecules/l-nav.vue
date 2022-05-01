@@ -6,7 +6,7 @@ import LDivider from "../atoms/l-divider.vue";
   <nav class="flex">
     <RouterLink to="/">Home</RouterLink>
     <RouterLink to="/travel">Travel</RouterLink>
-    <RouterLink to="/sightseeing">Sightseeing</RouterLink>
+    <!-- <RouterLink to="/sightseeing">Sightseeing</RouterLink> -->
     <RouterLink to="/rsvp">RSVP</RouterLink>
   </nav>
 </template>
@@ -24,10 +24,9 @@ nav > a {
   border-radius: 0.2rem;
   text-decoration: none;
 
-  &.current {
-    border-bottom: 2px solid $primary-200;
+  &.router-link-exact-active {
+    border-bottom: 4px solid $primary-100;
   }
-
   &:nth-last-child(1) {
     margin-right: 0;
   }

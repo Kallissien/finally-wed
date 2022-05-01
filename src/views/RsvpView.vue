@@ -2,12 +2,24 @@
 import LNav from "@/components/molecules/l-nav.vue";
 import { ref, computed } from 'vue'
 import LRsvpForm from "../components/organisms/l-rsvp-form.vue";
+import LMenuForm from "../components/organisms/l-menu-form.vue";
+import LMenuKidsForm from "../components/organisms/l-menu-kids-form.vue";
+
+const isGoingAnswer = ref()
+const isGoing = computed(() => {
+  if(isGoingAnswer.value === 'yes'){
+    return true
+  }
+  else return false
+})
 </script>
 <template>
   <main class="col-full">
     <section class="col-full__content">
       <h1>RSVP</h1>
-        <l-rsvp-form></l-rsvp-form>
+      <l-rsvp-form></l-rsvp-form>
+      <l-menu-form v-if="adultGoing"></l-menu-form>
+      <l-menu-kids-form v-if="kidGoing"></l-menu-kids-form>
     </section>
     <l-nav></l-nav>
   </main>
