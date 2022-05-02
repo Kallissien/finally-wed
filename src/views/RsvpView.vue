@@ -7,22 +7,11 @@
           <span v-if="hasSubmittedForm && isGoing">Thanks {{ firstName }}, we're looking forward to seeing you on the day!</span>
           <span v-if="hasSubmittedForm && !isGoing">Sorry to hear that {{ firstName }}</span>
           </h1>
-        <l-rsvp-form v-if="!hasSubmittedForm" @submit.prevent="onSubmit" />
-        <div v-if="hasSubmittedForm && isGoing">
-          <h2>Will you be using the adult or children's menu?</h2>
-          <div class="menu form flex row">
-          <label class="input-item">
-            <p>Adult</p>
-            <input type="radio" @change="updateMenuType" name="guestAge" value="adult">
-          </label>
-          <label class="input-item">
-            <p>Childrens</p>
-            <input type="radio" @change="updateMenuType" name="guestAge" value="child">
-          </label>
-          </div>
-          <l-menu-form v-if="isAdult" />
-          <l-menu-kids-form v-if="isKid" />
-          </div>
+        <l-rsvp-form v-if="!hasSubmittedForm" @submit.prevent="handleRsvpSubmit" />
+        <l-form-accepted v-if="hasSubmittedForm && isGoing">
+            <l-menu-form v-if="isAdult" @submit.prevent="handleMenuSubmit" />
+            <l-menu-kids-form v-if="isKid" @submit.prevent="handleMenuSubmit" />
+        </l-form-accepted>
       </article>
     </l-col-full>
   </main>
@@ -30,9 +19,11 @@
 <script>
 import LRsvpForm from "../components/organisms/l-rsvp-form.vue"
 import LMenuForm from "../components/organisms/l-menu-form.vue"
+import LFormAccepted from "../components/organisms/l-form-accepted.vue"
 import LMenuKidsForm from "../components/organisms/l-menu-kids-form.vue"
 import LColFull from "../components/molecules/l-col-full.vue"
 import { useOptionsStore } from '@/stores/optionsStore'
+import axios from "axios";
 export default {
   setup() {
     const optionsStore = useOptionsStore()
@@ -42,13 +33,20 @@ export default {
     LRsvpForm,
     LMenuForm,
     LMenuKidsForm,
-    LColFull
+    LColFull,
+    LFormAccepted
   },
   computed: {
     hasSubmittedForm(){
       if(this.optionsStore.getAcceptance !== "Not Responded")
       return true
       else return false
+    },
+    isGoing(){
+      return this.optionsStore.isUserGoing
+    },
+    firstName(){
+      return this.optionsStore.getName.split(" ")[0];
     },
     isAdult(){
       if(this.optionsStore.getMenuType === "adult")
@@ -60,12 +58,6 @@ export default {
       return true
       else return false
     },
-    isGoing(){
-      return this.optionsStore.isUserGoing
-    },
-    firstName(){
-      return this.optionsStore.getName.split(" ")[0];
-    }
   },
   data() {
     return {
@@ -185,11 +177,40 @@ export default {
           this.optionsStore.updatedAcceptance("no")
         }
       },
-      updateMenuType(e){
-        this.optionsStore.updatedMenuType(e.target.value)
-      }
-  },
-  
+      encode (data) {
+      return Object.keys(data)
+        .map(
+          key => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
+        )
+        .join("&");
+        },
+        handleRsvpSubmit () {
+          const axiosConfig = {
+            header: { "Content-Type": "application/x-www-form-urlencoded" }
+          };
+          axios.post(
+            "/",
+            this.encode({
+              "form-name": "rsvp",
+              ...this.form
+            }),
+            axiosConfig
+          );
+        },
+        handleMenuSubmit (formName) {
+          const axiosConfig = {
+            header: { "Content-Type": "application/x-www-form-urlencoded" }
+          };
+          axios.post(
+            "/",
+            this.encode({
+              "form-name": formName,
+              ...this.form
+            }),
+            axiosConfig
+          );
+        }
+  }  
 }
 </script>
 <style lang="scss">
