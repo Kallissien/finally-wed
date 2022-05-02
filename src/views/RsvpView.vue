@@ -172,7 +172,8 @@ export default {
         }
       },
       form: {
-        
+        name: "test",
+        attending: "no"
       }
     }
   },
@@ -204,17 +205,7 @@ export default {
             "/",
             this.encode({
               "form-name": "rsvp",
-              data: {
-                Name: e.target[1].value,
-                Attending: function(){
-                  if(e.target[2].checked){ // They said yes
-                    return("yes")
-                  }
-                  else{
-                    return("no")
-                  }
-                }
-              }
+              ...this.form
             }),
             axiosConfig
           )
