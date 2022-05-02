@@ -25,9 +25,6 @@ import LNav from "../components/molecules/l-nav.vue";
   }
 }
   @media screen and (max-width: $screen-sm){
-    .col{
-      height: 100vh;
-    }
     .image-right{
       display: none;
     }

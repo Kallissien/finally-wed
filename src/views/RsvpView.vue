@@ -17,8 +17,8 @@ const isGoing = computed(() => {
 <template>
   <main>
     <l-col-full>
-      <h1>RSVP</h1>
       <article class="col-full__content">
+        <h1>RSVP</h1>
         <l-rsvp-form></l-rsvp-form>
         <l-menu-form v-if="adultGoing"></l-menu-form>
         <l-menu-kids-form v-if="kidGoing"></l-menu-kids-form>
