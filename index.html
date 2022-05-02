@@ -16,12 +16,12 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
     integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
     crossorigin=""></script>
-    <form style="display: none;" name="rsvp" method="POST" netlify hidden>
+    <form style="display: none;" name="rsvp" netlify-honeypot="bot-field" netlify hidden>
       <input type="text" name="name" />
       <input type="radio" name="attending" value="yes" />
       <input type="radio" name="attending" value="no" />
     </form>
-    <form style="display: none;" name="menu-adult" method="POST" netlify hidden>
+    <form style="display: none;" name="menu-adult" netlify-honeypot="bot-field" netlify hidden>
       <input type="text" name="name" />
       <input type="radio" name="soup" value="1.1" />
       <input type="radio" name="starter" value="2.1" />
@@ -33,7 +33,7 @@
       <input type="radio" name="dessert" value="4.1" />
       <input type="radio" name="dessert" value="4.2" />
     </form>
-    <form style="display: none;" netlify name="menu-kids" method="POST" hidden>
+    <form style="display: none;" netlify name="menu-kids" netlify-honeypot="bot-field" hidden>
       <input type="text" name="name" />
       <input type="radio" name="starter" value="1.1" />
       <input type="radio" name="starter" value="1.2" />

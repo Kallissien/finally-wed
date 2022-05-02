@@ -7,7 +7,7 @@
           <span v-if="hasSubmittedForm && isGoing">Thanks {{ firstName }}, we're looking forward to seeing you on the day!</span>
           <span v-if="hasSubmittedForm && !isGoing">Sorry to hear that {{ firstName }}</span>
           </h1>
-        <l-rsvp-form v-if="!hasSubmittedForm" v-on:submit.prevent="onSubmit" />
+        <l-rsvp-form v-if="!hasSubmittedForm" @submit.prevent="onSubmit" />
         <div v-if="hasSubmittedForm && isGoing">
           <h2>Will you be using the adult or children's menu?</h2>
           <div class="menu form flex row">
