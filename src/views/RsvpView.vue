@@ -200,25 +200,35 @@ export default {
           const axiosConfig = {
             header: { "Content-Type": "application/x-www-form-urlencoded" }
           };
-          this.optionsStore.updatedName(e.target[1].value)
-          //Set if they accepted or declined
-          if(e.target[2].checked){ // They said yes
-            this.optionsStore.updatedAcceptance("yes")
-          }
-          else{
-            this.optionsStore.updatedAcceptance("no")
-          }
           axios.post(
             "/",
             this.encode({
               "form-name": "rsvp",
               data: {
-                Name: this.firstName,
-                Attending: this.optionsStore.isUserGoing
+                Name: e.target[1].value,
+                Attending: function(){
+                  if(e.target[2].checked){ // They said yes
+                    return("yes")
+                  }
+                  else{
+                    return("no")
+                  }
+                }
               }
             }),
             axiosConfig
           )
+          .then(() => {
+            let firstName = e.target[1].value.split(" ")[0];
+            this.optionsStore.updatedName(e.target[1].value)
+            //Set if they accepted or declined
+            if(e.target[2].checked){ // They said yes
+              this.optionsStore.updatedAcceptance("yes")
+            }
+            else{
+              this.optionsStore.updatedAcceptance("no")
+            }
+          })
         },
         handleMenuSubmit (formName) {
           const axiosConfig = {
