@@ -2,7 +2,8 @@
 import LLogo from "@/components/atoms/l-logo.vue";
 </script>
 <template>
-  <l-logo class="logo"></l-logo>
+<article class="col__content">
+    <l-logo class="logo"></l-logo>
   <div class="content">
     <h1>
       <p class="text-lg">5th August 2022</p>
@@ -13,4 +14,5 @@ import LLogo from "@/components/atoms/l-logo.vue";
       you can make it
     </p>
   </div>
+</article>
 </template>

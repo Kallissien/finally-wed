@@ -3,10 +3,7 @@ import lNav from "./l-nav.vue";
 </script>
 <template>
   <section class="col-full">
-    <article class="col-full__content">
       <slot></slot>
-    </article>
-    <l-nav></l-nav>
   </section>
 </template>
 <style lang="scss">
@@ -17,10 +14,9 @@ import lNav from "./l-nav.vue";
   align-items: center;
   background: #fff;
   color: $text-color;
-  min-width: 100vw;
-  min-height: 100vh;
-  h1 {
-    font-size: $heading;
+  width: 100%;
+  @media screen and (max-width: $screen-sm) {
+      justify-content: flex-start;
   }
   &__content {
     display: flex;

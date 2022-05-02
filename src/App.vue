@@ -1,5 +1,6 @@
 <script setup>
 import { RouterLink, RouterView } from "vue-router";
+import LNav from "./components/molecules/l-nav.vue";
 </script>
 
 <template>
@@ -8,34 +9,33 @@ import { RouterLink, RouterView } from "vue-router";
       <component :is="Component" />
     </transition>
   </router-view>
+  <l-nav />
 </template>
 
 <style lang="scss">
 @import "@/assets/styles/base.css";
-.flex {
-  display: flex;
+@import "@/assets/styles/variables.scss";
+#app{
+  width: 100vw;
+  height: 100vh;
+  color: $text-color;
+  overflow: hidden;
+  @media screen and (max-width: $screen-sm) {
+    overflow: auto;
+  }
+  main{
+    height: 90vh;
+    background: $white;
+    overflow: auto;
+  }
+}
+h1{
+  font-size: $text-heading;
+  margin: $spacing-base;
 }
 .text-lg {
   font-size: 1.5rem;
   text-align: center;
-}
-.flex-container {
-  min-height: 100vh;
-  overflow: hidden;
-  display: flex;
-  color: #212121;
-}
-.content {
-  flex-grow: 1;
-}
-.col-left,
-.col-right {
-  box-sizing: border-box;
-  width: 50vw;
-  height: 100vh;
-}
-.col-left {
-  overflow: auto;
 }
 .image-right {
   background-image: url("@/assets/wedding-pic-bw.png");

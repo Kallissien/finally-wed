@@ -2,36 +2,29 @@
 import lNav from "./l-nav.vue";
 </script>
 <template>
-  <section class="col-left">
-    <article class="col-left__content">
+  <section class="col">
       <slot></slot>
-    </article>
-    <l-nav></l-nav>
   </section>
 </template>
 <style lang="scss">
 @import "@/assets/styles/variables.scss";
-.col-left {
+.col{
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #fff;
-  width: 50vw;
-  height: 100vh;
-  @media screen and (max-width: $screen-md) {
-    width: 100vw;
-    height: 60vh;
-  }
-  h1 {
-    font-size: $heading;
-  }
+  height: 100%;
+  width: 100%;
   &__content {
+    background: $white;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     flex-grow: 1;
     padding: 2rem;
     width: 100%;
+  }
+  @media screen and (max-width: $screen-md) {
   }
 }
 </style>

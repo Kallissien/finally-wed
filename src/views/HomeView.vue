@@ -1,14 +1,35 @@
 <script setup>
-import LHome from "@/components/molecules/l-home.vue";
-import LColLeft from "../components/molecules/l-col-left.vue";
+import LHomeContent from "@/components/organisms/l-home-content.vue";
+import LCol from "../components/molecules/l-col.vue";
+import LNav from "../components/molecules/l-nav.vue";
 </script>
 
 <template>
-  <main class="flex-container">
-    <l-col-left>
-      <l-home></l-home>
-    </l-col-left>
-    <section class="col-right image-right"></section>
+  <main class="col-2">
+    <l-col>
+      <l-home-content />
+    </l-col>
+    <!-- <l-col class="image-right">
+      <article class="col-right"></article>
+    </l-col> -->
   </main>
 </template>
-<style scoped></style>
+<style lang="scss">
+@import '@/assets/styles/variables.scss';
+.col-2{
+  display: flex;
+  flex-direction: row;
+  @media screen and (max-width: $screen-md){
+    display: flex;
+    flex-direction: row;
+  }
+}
+  @media screen and (max-width: $screen-sm){
+    .col{
+      height: 100vh;
+    }
+    .image-right{
+      display: none;
+    }
+  }
+</style>

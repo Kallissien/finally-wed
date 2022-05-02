@@ -112,3 +112,25 @@ export default{
     }
 }
 </script>
+<style lang="scss">
+@import '@/assets/styles/variables.scss';
+.menu-course {
+    &_header {
+        font-size: 2rem;
+        text-transform: uppercase;
+        font-weight: 400;
+    }
+}
+.menu-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    &_heading {
+        font-size: 1.2rem;
+    }
+    &_sub {
+        font-size: 1rem;
+    }
+}
+</style>

@@ -4,6 +4,7 @@ import { ref, computed } from 'vue'
 import LRsvpForm from "../components/organisms/l-rsvp-form.vue";
 import LMenuForm from "../components/organisms/l-menu-form.vue";
 import LMenuKidsForm from "../components/organisms/l-menu-kids-form.vue";
+import LColFull from "../components/molecules/l-col-full.vue";
 
 const isGoingAnswer = ref()
 const isGoing = computed(() => {
@@ -14,14 +15,15 @@ const isGoing = computed(() => {
 })
 </script>
 <template>
-  <main class="col-full">
-    <section class="col-full__content">
+  <main>
+    <l-col-full>
       <h1>RSVP</h1>
-      <l-rsvp-form></l-rsvp-form>
-      <l-menu-form v-if="adultGoing"></l-menu-form>
-      <l-menu-kids-form v-if="kidGoing"></l-menu-kids-form>
-    </section>
-    <l-nav></l-nav>
+      <article class="col-full__content">
+        <l-rsvp-form></l-rsvp-form>
+        <l-menu-form v-if="adultGoing"></l-menu-form>
+        <l-menu-kids-form v-if="kidGoing"></l-menu-kids-form>
+      </article>
+    </l-col-full>
   </main>
 </template>
 <script>
@@ -228,34 +230,6 @@ form{
     font-size: 1.2rem;
     
     text-transform: uppercase;
-  }
-}
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
-}
-.col-full {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: #fff;
-  color: $text-color;
-  overflow-x: hidden;
-  max-width: 100vw;
-  min-height: 100vh;
-  h1 {
-    font-size: $heading;
-  }
-  &__content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex-grow: 1;
-    padding: 2rem;
-    width: 100%;
   }
 }
 </style>
