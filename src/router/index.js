@@ -3,7 +3,6 @@ import HomeView from "@/views/HomeView.vue";
 import TravelView from "@/views/TravelView.vue";
 import SightsView from "@/views/SightsView.vue";
 import RsvpView from "@/views/RsvpView.vue";
-import ThanksView from "@/views/ThanksView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -63,21 +62,7 @@ const router = createRouter({
           },
         ],
       },
-    },
-    {
-      path: "/thanks",
-      name: "thanks",
-      component: ThanksView,
-      meta: {
-        title: "Thanks for using the site!",
-        metaTags: [
-          {
-            name: "description",
-            content: "",
-          },
-        ],
-      },
-    },
+    }
   ],
 });
 

@@ -11,7 +11,7 @@
           <l-rsvp-form v-if="!hasSubmittedForm" @submit.prevent="handleRsvpSubmit" />
         </transition>
         <transition mode="out-in" name="slide-fade">
-          <l-form-accepted v-if="hasSubmittedForm && isGoing">
+          <l-form-accepted v-if="hasSubmittedForm && isGoing && !hasSubmittedMenu">
               <transition mode="out-in" name="slide-fade">
                 <l-menu-form v-if="isAdult" @submit.prevent="handleAdultMenuSubmit" />
               </transition>
@@ -19,6 +19,9 @@
                 <l-menu-kids-form v-if="isKid" @submit.prevent="handleChildMenuSubmit" />
               </transition>
           </l-form-accepted>
+        </transition>
+        <transition>
+          <l-post-form v-if="hasSubmittedForm && isGoing && hasSubmittedMenu"></l-post-form>
         </transition>
       </article>
     </l-col-full>
@@ -30,6 +33,7 @@ import LMenuForm from "../components/organisms/l-menu-form.vue"
 import LFormAccepted from "../components/organisms/l-form-accepted.vue"
 import LMenuKidsForm from "../components/organisms/l-menu-kids-form.vue"
 import LColFull from "../components/molecules/l-col-full.vue"
+import LPostForm from "../components/organisms/l-post-form.vue"
 import { useOptionsStore } from '@/stores/optionsStore'
 import axios from "axios";
 export default {
@@ -42,7 +46,8 @@ export default {
     LMenuForm,
     LMenuKidsForm,
     LColFull,
-    LFormAccepted
+    LFormAccepted,
+    LPostForm
   },
   computed: {
     isGoing(){
@@ -87,7 +92,8 @@ export default {
         attending: this.optionsStore.getAcceptance,
       },
       menu: this.optionsStore.getMenuOptions,
-      hasSubmittedForm: false
+      hasSubmittedForm: false,
+      hasSubmittedMenu: false
     }
   },
   methods: {
