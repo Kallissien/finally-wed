@@ -7,11 +7,20 @@
           <span v-if="hasSubmittedForm && isGoing">Thanks {{ firstName }}, we're looking forward to seeing you on the day!</span>
           <span v-if="hasSubmittedForm && !isGoing">Sorry to hear that {{ firstName }}</span>
           </h1>
+      <transition mode="out-in" name="slide-fade">
         <l-rsvp-form v-if="!hasSubmittedForm" @submit.prevent="handleRsvpSubmit" />
+      </transition>
+      <transition mode="out-in" name="slide-fade">
         <l-form-accepted v-if="hasSubmittedForm && isGoing">
+              <transition mode="out-in" name="slide-fade">
             <l-menu-form v-if="isAdult" @submit.prevent="handleMenuSubmit" />
+                      </transition>
+                            <transition mode="out-in" name="slide-fade">
+
             <l-menu-kids-form v-if="isKid" @submit.prevent="handleMenuSubmit" />
+                      </transition>
         </l-form-accepted>
+        </transition>
       </article>
     </l-col-full>
   </main>
@@ -161,6 +170,9 @@ export default {
             }
           ]
         }
+      },
+      form: {
+        
       }
     }
   },
@@ -184,18 +196,29 @@ export default {
         )
         .join("&");
         },
-        handleRsvpSubmit () {
+        handleRsvpSubmit (e) {
           const axiosConfig = {
             header: { "Content-Type": "application/x-www-form-urlencoded" }
           };
+          this.optionsStore.updatedName(e.target[1].value)
+          //Set if they accepted or declined
+          if(e.target[2].checked){ // They said yes
+            this.optionsStore.updatedAcceptance("yes")
+          }
+          else{
+            this.optionsStore.updatedAcceptance("no")
+          }
           axios.post(
             "/",
             this.encode({
               "form-name": "rsvp",
-              ...this.form
+              data: {
+                Name: this.firstName,
+                Attending: this.optionsStore.isUserGoing
+              }
             }),
             axiosConfig
-          );
+          )
         },
         handleMenuSubmit (formName) {
           const axiosConfig = {
