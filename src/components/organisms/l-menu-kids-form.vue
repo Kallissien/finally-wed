@@ -128,7 +128,7 @@ export default {
     },
     methods: {
     updateMenuOptions(e){
-      this.optionsStore.updatedMenu(e.target.name, e.target.value)
+      this.optionsStore.updatedMenu(e.target.name, e.target.id)
     },
   }
 }
