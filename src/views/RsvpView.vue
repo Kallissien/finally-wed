@@ -5,7 +5,7 @@
         <h1>
           <span v-if="!hasSubmittedForm">RSVP</span>
           <span v-if="hasSubmittedForm && isGoing">Thanks {{ firstName }}, we're looking forward to seeing you on the day!</span>
-          <span v-if="hasSubmittedForm && !isGoing">Sorry to hear that {{ firstName }}</span>
+          <span v-if="hasSubmittedForm && !isGoing">Sorry to hear that {{ firstName }}, we hope to celebrate at another time!</span>
           </h1>
       <transition mode="out-in" name="slide-fade">
         <l-rsvp-form v-if="!hasSubmittedForm" @submit.prevent="handleRsvpSubmit" />
@@ -13,11 +13,11 @@
       <transition mode="out-in" name="slide-fade">
         <l-form-accepted v-if="hasSubmittedForm && isGoing">
               <transition mode="out-in" name="slide-fade">
-            <l-menu-form v-if="isAdult" @submit.prevent="handleMenuSubmit" />
+            <l-menu-form v-if="isAdult" @submit.prevent="handleAdultMenuSubmit" />
                       </transition>
                             <transition mode="out-in" name="slide-fade">
 
-            <l-menu-kids-form v-if="isKid" @submit.prevent="handleMenuSubmit" />
+            <l-menu-kids-form v-if="isKid" @submit.prevent="handleChildMenuSubmit" />
                       </transition>
         </l-form-accepted>
         </transition>
@@ -116,19 +116,38 @@ export default {
             this.hasSubmittedForm = true
           })
         },
-        handleMenuSubmit (formName) {
+        handleAdultMenuSubmit (e) {
           const axiosConfig = {
             header: { "Content-Type": "application/x-www-form-urlencoded" }
           };
           axios.post(
             "/",
             this.encode({
-              "form-name": formName,
-              ...this.form
+              "form-name": "menu-adult",
+              ...this.menu
             }),
             axiosConfig
-          );
-        }
+          )
+          .then(() => {
+            this.hasSubmittedMenu = true
+          })
+        },
+        handleChildMenuSubmit (e) {
+          const axiosConfig = {
+            header: { "Content-Type": "application/x-www-form-urlencoded" }
+          };
+          axios.post(
+            "/",
+            this.encode({
+              "form-name": "menu-kids",
+              ...this.menu
+            }),
+            axiosConfig
+          )
+          .then(() => {
+            this.hasSubmittedMenu = true
+          })
+        },
   }  
 }
 </script>
