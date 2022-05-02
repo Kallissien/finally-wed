@@ -68,7 +68,7 @@ export default {
       }
     },
     computedMenu(){
-      return this.optionsStore.getMenuOptions,
+      return this.optionsStore.getMenuOptions
     }
   },
   data() {
