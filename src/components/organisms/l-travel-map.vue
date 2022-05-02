@@ -1,12 +1,12 @@
 <template>
-  <div style="height: 100vh; color: #fff">
-    <div class="info" style="height: 10%">
+  <article class="map-container">
+    <!-- <div class="info" style="height: 10%">
       <span>Center: {{ center }}</span>
       <span>Zoom: {{ zoom }}</span>
       <span>Bounds: {{ bounds }}</span>
-    </div>
+    </div> -->
     <l-map
-      style="height: 90%; width: 100%"
+      class="map"
       :zoom="zoom"
       :center="center"
       @update:zoom="zoomUpdated"
@@ -16,7 +16,7 @@
       <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
       <l-marker :lat-lng="[55.205078, -6.240239]"></l-marker>
     </l-map>
-  </div>
+  </article>
 </template>
 
 <script>
@@ -74,3 +74,13 @@ export default {
   },
 };
 </script>
+<style lang="scss">
+.map-container{
+  height: 100%;
+  width: 100%;
+  .map{
+    width: 100%;
+    height: 100%;
+  }
+}
+</style>

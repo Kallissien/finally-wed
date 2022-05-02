@@ -12,6 +12,7 @@
             <input :type="data.type" :name="data.name" :id="data.id" value="{{data.label1}}">
             </label>
         </div>
+        <button type="submit">Submit menu options</button>
     </form>
 </template>
 <script>
@@ -114,7 +115,27 @@ export default{
 </script>
 <style lang="scss">
 @import '@/assets/styles/variables.scss';
+.menu{
+    border: none;
+    .form-header{
+        margin-bottom: 3rem;
+    }
+    .form-section{
+        border: solid 1px $primary-100;
+        width: 100%;
+        padding: 1rem;
+        margin-bottom: 4rem;
+    }
+    .menu-course_header{
+        position: relative;
+        top: -3.54rem;
+        padding: 1rem;
+        background: #fff;
+        margin-bottom: -4rem;
+    }
+}
 .menu-course {
+    border: solid 1px $primary-100;
     &_header {
         font-size: 2rem;
         text-transform: uppercase;

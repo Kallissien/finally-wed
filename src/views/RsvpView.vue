@@ -1,33 +1,72 @@
-<script setup>
-import LNav from "@/components/molecules/l-nav.vue";
-import { ref, computed } from 'vue'
-import LRsvpForm from "../components/organisms/l-rsvp-form.vue";
-import LMenuForm from "../components/organisms/l-menu-form.vue";
-import LMenuKidsForm from "../components/organisms/l-menu-kids-form.vue";
-import LColFull from "../components/molecules/l-col-full.vue";
-
-const isGoingAnswer = ref()
-const isGoing = computed(() => {
-  if(isGoingAnswer.value === 'yes'){
-    return true
-  }
-  else return false
-})
-</script>
 <template>
   <main>
     <l-col-full>
       <article class="col-full__content">
-        <h1>RSVP</h1>
-        <l-rsvp-form></l-rsvp-form>
-        <l-menu-form v-if="adultGoing"></l-menu-form>
-        <l-menu-kids-form v-if="kidGoing"></l-menu-kids-form>
+        <h1>
+          <span v-if="!hasSubmittedForm">RSVP</span>
+          <span v-if="hasSubmittedForm && isGoing">Thanks {{ firstName }}, we're looking forward to seeing you on the day!</span>
+          <span v-if="hasSubmittedForm && !isGoing">Sorry to hear that {{ firstName }}</span>
+          </h1>
+        <l-rsvp-form v-if="!hasSubmittedForm" v-on:submit.prevent="onSubmit" />
+        <div v-if="hasSubmittedForm && isGoing">
+          <h2>Will you be using the adult or children's menu?</h2>
+          <div class="menu form flex row">
+          <label class="input-item">
+            <p>Adult</p>
+            <input type="radio" @change="updateMenuType" name="guestAge" value="adult">
+          </label>
+          <label class="input-item">
+            <p>Childrens</p>
+            <input type="radio" @change="updateMenuType" name="guestAge" value="child">
+          </label>
+          </div>
+          <l-menu-form v-if="isAdult" />
+          <l-menu-kids-form v-if="isKid" />
+          </div>
       </article>
     </l-col-full>
   </main>
 </template>
 <script>
+import LRsvpForm from "../components/organisms/l-rsvp-form.vue"
+import LMenuForm from "../components/organisms/l-menu-form.vue"
+import LMenuKidsForm from "../components/organisms/l-menu-kids-form.vue"
+import LColFull from "../components/molecules/l-col-full.vue"
+import { useOptionsStore } from '@/stores/optionsStore'
 export default {
+  setup() {
+    const optionsStore = useOptionsStore()
+    return { optionsStore }
+  },
+  components:{
+    LRsvpForm,
+    LMenuForm,
+    LMenuKidsForm,
+    LColFull
+  },
+  computed: {
+    hasSubmittedForm(){
+      if(this.optionsStore.getAcceptance !== "Not Responded")
+      return true
+      else return false
+    },
+    isAdult(){
+      if(this.optionsStore.getMenuType === "adult")
+      return true
+      else return false
+    },
+    isKid(){
+      if(this.optionsStore.getMenuType === "child")
+      return true
+      else return false
+    },
+    isGoing(){
+      return this.optionsStore.isUserGoing
+    },
+    firstName(){
+      return this.optionsStore.getName.split(" ")[0];
+    }
+  },
   data() {
     return {
       personalDetails:[
@@ -133,10 +172,47 @@ export default {
       }
     }
   },
+  methods: {
+      onSubmit(e){
+        // Set name based on input
+        let firstName = e.target[1].value.split(" ")[0];
+        this.optionsStore.updatedName(e.target[1].value)
+        //Set if they accepted or declined
+        if(e.target[2].checked){ // They said yes
+          this.optionsStore.updatedAcceptance("yes")
+        }
+        else{
+          this.optionsStore.updatedAcceptance("no")
+        }
+      },
+      updateMenuType(e){
+        this.optionsStore.updatedMenuType(e.target.value)
+      }
+  },
+  
 }
 </script>
 <style lang="scss">
 @import "@/assets/styles/variables.scss";
+.flex{
+  display: flex;
+  .row{
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+  }
+  .input-item{
+    display: flex;
+    flex-direction: row;
+    margin-right: 2rem;
+    justify-content: center;
+    align-items: center;
+    p{
+      margin-right: 1rem;
+    }
+  }
+}
 form{
   display: flex;
   flex-direction: column;

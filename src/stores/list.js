@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 
-export const guests = defineStore('todos', {
+export const guests = defineStore('guestList', {
   state: () => ({
     /** @type {{ text: string, id: number, isFinished: boolean }[]} */
     guestList: [

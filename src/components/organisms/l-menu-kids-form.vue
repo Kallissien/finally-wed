@@ -14,9 +14,9 @@
                 </div>
 
                 <input :type="data.type" :name="data.name" :id="data.id">
-                <button type="submit">I want this food, no take backsies</button>
             </label>
         </div>
+        <button type="submit">Submit menu options</button>
     </form>
 </template>
 <script>

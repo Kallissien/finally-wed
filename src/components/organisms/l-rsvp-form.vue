@@ -11,11 +11,11 @@
         <div class="form-section attending">
             <label class="input-item">
               <p>Graciously accept</p>
-              <input type="radio" name="attending" value="yes" v-model="isGoingAnswer" required>
+              <input type="radio" name="attending" value="yes" required>
             </label>
             <label class="input-item">
               <p>Respectfully decline</p>
-              <input type="radio" name="attending" value="no" v-model="isGoingAnswer" required>
+              <input type="radio" name="attending" value="no" required>
             </label>
         </div>
         <button type="submit">Send Reply</button>
@@ -44,10 +44,11 @@ form {
   display: flex;
   flex-direction: column;
   width: 100%;
-  border: solid 1px $primary-100;
   padding: 2rem;
   max-width: 500px;
   text-align: center;
+  border: solid 1px $primary-100;
+  font-size: 1.2rem;
   .form-section {
     display: flex;
     flex-direction: column;
@@ -72,9 +73,6 @@ form {
   }
   .attending {
     font-size: 1.3rem;
-    .input-item {
-      width: auto;
-    }
   }
 
   button {
