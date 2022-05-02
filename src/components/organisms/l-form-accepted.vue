@@ -1,5 +1,5 @@
 <template>
-    <div >
+    <div class="thanks">
         <h2>Will you be using the adult or children's menu?</h2>
         <div class="menu form flex row">
         <label class="input-item">
@@ -28,3 +28,15 @@ export default{
     }
 }
 </script>
+<style lang="scss">
+.thanks{
+    text-align: center;
+    h2{
+        margin-bottom: 1rem;
+    }
+    .menu{
+        justify-content: center;
+        font-size: 1.2rem;
+    }
+}
+</style>

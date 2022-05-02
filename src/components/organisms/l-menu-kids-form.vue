@@ -1,6 +1,5 @@
 <template>
     <form class="form col menu" name="menu-kids" method="POST" type="hidden">
-        <h3>Kids menu</h3>
         <p class="form-header">Please fill out your menu options</p>
 
         <div class="form-section col" v-for="course in menu" :key="course.id">

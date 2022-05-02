@@ -1,5 +1,5 @@
 <template>
-<form class="form" name="rsvp" method="POST" type="hidden">
+<form class="form" name="rsvp" type="hidden">
   <input type="hidden" name="form-name" value="rsvp" />
         <div class="form-section">
           <p class="form-header">Please enter your name</p>
