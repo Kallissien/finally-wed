@@ -9,14 +9,19 @@
                 <p class="menu-item_heading">{{ data.label1 }}</p>
                 <p class="menu-item_sub">{{ data.label2 }}</p>
             </div>
-            <input :type="data.type" :name="data.name" :id="data.id" value="{{data.label1}}">
+            <input :type="data.type" :name="data.name" :id="data.id" @change="updateMenuOptions" value="{{data.label1}}" required>
             </label>
         </div>
         <button type="submit">Submit menu options</button>
     </form>
 </template>
 <script>
-export default{
+import { useOptionsStore } from "../../stores/optionsStore";
+export default {
+    setup(){
+    const optionsStore = useOptionsStore()
+    return { optionsStore }
+    },
     data(){
         return{
             menu: {
@@ -110,6 +115,12 @@ export default{
                 },
       }
         }
+    },
+    methods: {
+        updateMenuOptions(e){
+            console.log("hello")
+        this.optionsStore.updatedMenu(e.target.name, e.target.id)
+    },
     }
 }
 </script>

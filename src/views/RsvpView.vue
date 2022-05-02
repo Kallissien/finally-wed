@@ -46,11 +46,6 @@ export default {
     LFormAccepted
   },
   computed: {
-    hasSubmittedForm(){
-      if(this.optionsStore.getAcceptance !== "Not Responded")
-      return true
-      else return false
-    },
     isGoing(){
       return this.optionsStore.isUserGoing
     },
@@ -79,108 +74,16 @@ export default {
           placeholder: "Name",
         },
       ],
-      menu: {
-        soup: {
-          id: "1",
-          name: "Soup",
-          options:
-          [
-            {
-              id: "1.1",
-              name: "soup",
-              label1: "Comber potato & leek",
-              label2: "crispy parsnips",
-              type: "radio",
-            }
-          ],
-        },
-        starter: {
-          id: "2",
-          name: "Starter",
-          options:
-          [
-            {
-              id: "2.1",
-              name: "starter",
-              label1: "Smoked cheese and spring onion fishcake",
-              label2: "with mixed leaves, sour cream and crispy dulse.",
-              type: "radio",
-            },
-            {
-              id: "2.2",
-              name: "starter",
-              label1: "Crispy ham hock and Gracehill black pudding croquettes",
-              label2: "rocket leaves, homemade piccalilli and toasted sourdough.",
-              type: "radio",
-            },
-            {
-              id: "2.3",
-              name: "starter",
-              label1: "Vegetarian option",
-              label2: "sourced locally on the day",
-              type: "radio",
-            }
-          ]
-        },
-        main:{
-          id: "3",
-          name: "Main",
-          options:
-          [
-            {
-              id: "5",
-              name: "main",
-              label1: "Seared salmon fillet",
-              label2: "smoked chorizo and prawn cream.",
-              type: "radio",
-            },
-            {
-              id: "6",
-              name: "main",
-              label1: "Roast county Antrim turkey and ham",
-              label2: "cranberry stuffing and rich pan jus",
-              type: "radio",
-            },
-            {
-              id: "7",
-              name: "main",
-              label1: "Vegetarian option",
-              label2: "sourced locally on the day",
-              type: "radio",
-            },
-          ],
-        },
-        dessert: {
-          id: "4",
-          name: "Dessert",
-          options: [
-            {
-              id: "4.1",
-              name: "Sticky toffee pudding",
-              label1: "Seared salmon fillet",
-              label2: "Bushmills toffee sauce and Morelli's honeycomb ice cream",
-              type: "radio",
-            },
-            {
-              id: "4.2",
-              name: "Spiced apple and cinnamon crumble",
-              label1: "Roast county Antrim turkey and ham",
-              label2: "Morelli's vanilla ice cream",
-              type: "radio",
-            }
-          ]
-        }
-      },
       form: {
-        name: "test",
-        attending: "no"
-      }
+        name: this.optionsStore.getName,
+        attending: this.optionsStore.getAcceptance
+      },
+      menu: this.optionsStore.getMenuOptions,
+      hasSubmittedForm: false
     }
   },
   methods: {
-      onSubmit(e){
-        // Set name based on input
-        let firstName = e.target[1].value.split(" ")[0];
+      showMenu(){
         this.optionsStore.updatedName(e.target[1].value)
         //Set if they accepted or declined
         if(e.target[2].checked){ // They said yes
@@ -210,15 +113,7 @@ export default {
             axiosConfig
           )
           .then(() => {
-            let firstName = e.target[1].value.split(" ")[0];
-            this.optionsStore.updatedName(e.target[1].value)
-            //Set if they accepted or declined
-            if(e.target[2].checked){ // They said yes
-              this.optionsStore.updatedAcceptance("yes")
-            }
-            else{
-              this.optionsStore.updatedAcceptance("no")
-            }
+            this.hasSubmittedForm = true
           })
         },
         handleMenuSubmit (formName) {

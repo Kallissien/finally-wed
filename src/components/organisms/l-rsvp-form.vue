@@ -4,25 +4,30 @@
         <div class="form-section">
           <p class="form-header">Please enter your name</p>
           <label class="input-item">
-              <input class="input-field" type="text" name="name" placeholder="Enter your full name" required>
+              <input class="input-field" type="text" name="name" @change="updateName" placeholder="Enter your full name" required>
           </label>
         </div>
         <p class="form-header">Are you attending on the day?</p>
         <div class="form-section attending">
             <label class="input-item">
               <p>Graciously accept</p>
-              <input type="radio" name="attending" value="yes" required>
+              <input type="radio" name="attending" @change="updateResponse" value="yes" required>
             </label>
             <label class="input-item">
               <p>Respectfully decline</p>
-              <input type="radio" name="attending" value="no" required>
+              <input type="radio" name="attending" @change="updateResponse" value="no" required>
             </label>
         </div>
         <button type="submit">Send Reply</button>
 </form>
 </template>
 <script>
+import { useOptionsStore } from "../../stores/optionsStore";
 export default {
+  setup(){
+    const optionsStore = useOptionsStore()
+    return { optionsStore }
+  },
   data() {
     return {
       personalDetails: [
@@ -35,6 +40,14 @@ export default {
         },
       ]
     };
+  },
+  methods: {
+    updateName(e){
+      this.optionsStore.updatedName(e.target.value)
+    },
+    updateResponse(e){
+      this.optionsStore.updatedAcceptance(e.target.value)
+    }
   }
 };
 </script>

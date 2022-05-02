@@ -5,7 +5,7 @@ export const useOptionsStore = defineStore('optionsStore', {
         userName: "Not Set",
         responseStatus: "Not Responded",
         menuType: "Not Chosen",
-        menuOptions: []
+        menuOptions: {}
     }),
     getters: {
         isUserGoing(state) {
@@ -38,8 +38,8 @@ export const useOptionsStore = defineStore('optionsStore', {
     updatedMenuType(text){
         this.menuType = text
     },
-    updatedMenu(text) {
-        this.responseStatus = text
+    updatedMenu(id, text) {
+        this.menuOptions[id] = text
     },
     updatedName(text) {
         this.userName = text
