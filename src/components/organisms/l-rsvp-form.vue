@@ -1,5 +1,5 @@
 <template>
-<form class="form" name="rsvp" type="hidden">
+<form class="form" name="rsvp" method="POST" type="hidden">
   <input type="hidden" name="form-name" value="rsvp" />
         <div class="form-section">
           <p class="form-header">Please enter your name</p>
@@ -44,6 +44,7 @@ export default {
   methods: {
     updateName(e){
       this.optionsStore.updatedName(e.target.value)
+      this.optionsStore.updatedMenu('name', e.target.value)
     },
     updateResponse(e){
       this.optionsStore.updatedAcceptance(e.target.value)

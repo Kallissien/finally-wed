@@ -61,6 +61,15 @@ export default {
       return true
       else return false
     },
+    computedForm(){
+      return {
+        name: this.optionsStore.getName,
+        attending: this.optionsStore.getAcceptance,
+      }
+    },
+    computedMenu(){
+      return this.optionsStore.getMenuOptions,
+    }
   },
   data() {
     return {
@@ -75,7 +84,7 @@ export default {
       ],
       form: {
         name: this.optionsStore.getName,
-        attending: this.optionsStore.getAcceptance
+        attending: this.optionsStore.getAcceptance,
       },
       menu: this.optionsStore.getMenuOptions,
       hasSubmittedForm: false
@@ -107,7 +116,7 @@ export default {
             "/",
             this.encode({
               "form-name": "rsvp",
-              ...this.form
+              ...this.computedForm
             }),
             axiosConfig
           )
@@ -123,10 +132,7 @@ export default {
             "/",
             this.encode({
               "form-name": "menu-adult",
-                form: {
-                  name: this.optionsStore.getName,
-                  attending: this.optionsStore.getAcceptance
-                },
+              ...this.computedMenu
             }),
             axiosConfig
           )
@@ -142,7 +148,7 @@ export default {
             "/",
             this.encode({
               "form-name": "menu-kids",
-              ...this.menu
+              ...this.computedMenu
             }),
             axiosConfig
           )
