@@ -44,5 +44,25 @@ export const useOptionsStore = defineStore('optionsStore', {
     updatedName(text) {
         this.userName = text
     },
+    setLocalStorage(){
+        localStorage.setItem('menuType', this.menuType);
+        localStorage.setItem('menuOptions', this.menuOptions);
+        localStorage.setItem('userName', this.userName);
+        localStorage.setItem('responseStatus', this.responseStatus);
+    },
+    initialiseStore(){
+        if( localStorage.getItem('menuType') ){
+            this.menuType = localStorage.getItem('menuType')
+        }
+        if( localStorage.getItem('menuOptions') ){
+            this.menuOptions = localStorage.getItem('menuOptions')
+        }
+        if( localStorage.getItem('userName') ){
+            this.userName = localStorage.getItem('userName')
+        }
+        if( localStorage.getItem('responseStatus') ){
+            this.responseStatus = localStorage.getItem('responseStatus')
+        }
+    }
     }
 })

@@ -1,8 +1,3 @@
-<script setup>
-import { RouterLink, RouterView } from "vue-router";
-import LNav from "./components/molecules/l-nav.vue";
-</script>
-
 <template>
   <router-view v-slot="{ Component }">
     <transition mode="out-in" name="slide-fade">
@@ -11,7 +6,24 @@ import LNav from "./components/molecules/l-nav.vue";
   </router-view>
   <l-nav />
 </template>
+<script>
+import { useOptionsStore } from '@/stores/optionsStore'
+import { RouterLink, RouterView } from "vue-router";
+import LNav from "./components/molecules/l-nav.vue";
+export default{
+  setup(){
+    const optionsStore = useOptionsStore()
+    return { optionsStore }
+  },
+  components: {
+    LNav
+  },
+  beforeCreate() { 
+    this.optionsStore.initialiseStore()
+  },
+}
 
+</script>
 <style lang="scss">
 @import "@/assets/styles/base.css";
 @import "@/assets/styles/variables.scss";

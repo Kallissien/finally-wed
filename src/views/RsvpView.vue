@@ -159,6 +159,7 @@ export default {
             axiosConfig
           )
           .then(() => {
+            optionsStore.setLocalStorage()
             this.hasSubmittedMenu = true
           })
         },
