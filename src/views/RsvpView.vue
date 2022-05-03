@@ -138,7 +138,7 @@ export default {
             axiosConfig
           )
           .then(() => {
-            optionsStore.setLocalStorage()
+            this.optionsStore.setLocalStorage()
             this.hasSubmittedForm = true
           })
         },
@@ -155,7 +155,7 @@ export default {
             axiosConfig
           )
           .then(() => {
-            optionsStore.setLocalStorage()
+            this.optionsStore.setLocalStorage()
             this.hasSubmittedMenu = true
           })
         },
@@ -172,7 +172,7 @@ export default {
             axiosConfig
           )
           .then(() => {
-            optionsStore.setLocalStorage()
+            this.optionsStore.setLocalStorage()
             this.hasSubmittedMenu = true
           })
         },
