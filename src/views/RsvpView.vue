@@ -114,7 +114,7 @@ export default {
         if(this.optionsStore.getAcceptance !== "Not Responded"){
           this.hasSubmittedForm = true
         }
-        if(this.optionsStore.getMenuType !== "Not Set"){
+        if(this.optionsStore.getMenuType !== "Not Chosen"){
           this.hasSubmittedMenu = true
         }
       },
@@ -138,6 +138,7 @@ export default {
             axiosConfig
           )
           .then(() => {
+            optionsStore.setLocalStorage()
             this.hasSubmittedForm = true
           })
         },
@@ -154,6 +155,7 @@ export default {
             axiosConfig
           )
           .then(() => {
+            optionsStore.setLocalStorage()
             this.hasSubmittedMenu = true
           })
         },
