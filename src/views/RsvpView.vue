@@ -49,6 +49,9 @@ export default {
     LFormAccepted,
     LPostForm
   },
+  beforeMount(){
+    this.checkStore()
+  },
   computed: {
     isGoing(){
       return this.optionsStore.isUserGoing
@@ -105,6 +108,14 @@ export default {
         }
         else{
           this.optionsStore.updatedAcceptance("no")
+        }
+      },
+      checkStore(){
+        if(this.optionsStore.getAcceptance !== "Not Responded"){
+          this.hasSubmittedForm = true
+        }
+        if(this.optionsStore.getMenuType !== "Not Set"){
+          this.hasSubmittedMenu = true
         }
       },
       encode (data) {
