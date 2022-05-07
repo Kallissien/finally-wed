@@ -2,7 +2,7 @@
   <main>
     <l-col-full>
       <article class="col-full__content">
-        <h1>
+        <h1 class="text-lg align-center">
           <span v-if="!hasSubmittedForm">RSVP</span>
           <span v-if="hasSubmittedForm && isGoing">Thanks {{ firstName }}, we're looking forward to seeing you on the day!</span>
           <span v-if="hasSubmittedForm && !isGoing">Sorry to hear that {{ firstName }}, we hope to celebrate at another time!</span>
@@ -126,6 +126,7 @@ export default {
         .join("&");
         },
         handleRsvpSubmit (e) {
+          this.hasSubmittedForm = true
           const axiosConfig = {
             header: { "Content-Type": "application/x-www-form-urlencoded" }
           };
@@ -139,10 +140,10 @@ export default {
           )
           .then(() => {
             this.optionsStore.setLocalStorage()
-            this.hasSubmittedForm = true
           })
         },
         handleAdultMenuSubmit (e) {
+          this.hasSubmittedMenu = true
           const axiosConfig = {
             header: { "Content-Type": "application/x-www-form-urlencoded" }
           };
@@ -156,10 +157,10 @@ export default {
           )
           .then(() => {
             this.optionsStore.setLocalStorage()
-            this.hasSubmittedMenu = true
           })
         },
         handleChildMenuSubmit (e) {
+          this.hasSubmittedMenu = true
           const axiosConfig = {
             header: { "Content-Type": "application/x-www-form-urlencoded" }
           };
@@ -173,7 +174,6 @@ export default {
           )
           .then(() => {
             this.optionsStore.setLocalStorage()
-            this.hasSubmittedMenu = true
           })
         },
   }  

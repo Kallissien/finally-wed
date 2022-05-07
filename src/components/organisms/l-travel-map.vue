@@ -14,20 +14,23 @@
       @update:bounds="boundsUpdated"
     >
       <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
-      <l-marker :lat-lng="[55.205078, -6.240239]"></l-marker>
+      <l-marker :lat-lng="[55.205078, -6.240239]">
+        <l-icon class="venue-icon" :icon-url="venueIcon.iconUrl" :shadow-url="venueIcon.shadowUrl" :icon-size="venueIcon.iconSize" />
+      </l-marker>
     </l-map>
   </article>
 </template>
 
 <script>
 import "leaflet/dist/leaflet.css"
-import { LMap, LTileLayer, LMarker } from "@vue-leaflet/vue-leaflet";
+import { LMap, LTileLayer, LMarker, LIcon } from "@vue-leaflet/vue-leaflet";
 
 export default {
   components: {
     LMap,
     LTileLayer,
     LMarker,
+    LIcon
   },
   data() {
     return {
@@ -35,7 +38,7 @@ export default {
       attribution:
         '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
       zoom: 9,
-      center: [54.871026, -6.255379],
+      center: [55.205078, -6.240239],
       bounds: null,
       mapPoints: [
         {
@@ -45,7 +48,16 @@ export default {
           lng: "-6.240239",
         },
       ],
-    };
+      venueIcon:{
+        iconUrl: '/marker-venue.png',
+        //shadowUrl: '/marker-venue.png',
+        iconSize:     [38, 38], // size of the icon
+        shadowSize:   [50, 64], // size of the shadow
+        iconAnchor:   [0, 18], // point of the icon which will correspond to marker's location
+        shadowAnchor: [4, 62],  // the same for the shadow
+        popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+      }
+    }
   },
   methods: {
     zoomUpdated(zoom) {
@@ -76,6 +88,7 @@ export default {
 </script>
 <style lang="scss">
 .map-container{
+  z-index: 1;
   height: 100%;
   width: 100%;
   .map{
