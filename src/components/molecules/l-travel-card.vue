@@ -5,8 +5,8 @@
         </div>
         <div class="card__content">
             <h2>{{ locationName }}</h2>
-            <p>{{ locationDescription }}</p>
-            <a class="card__link" :href="locationLink">See more <l-arrow-icon class="link-icon" /></a>
+            <p class="desc">{{ locationDescription }}</p>
+            <a class="card__link" :href="locationLink" target="_blank">See more <l-arrow-icon class="link-icon" /></a>
         </div>
     </article>
 </template>
@@ -45,25 +45,47 @@ export default{
 @import '@/assets/styles/variables.scss';
 .card{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     border: solid 1px $primary-200;
     border-radius: $border-radius;
     transition: 0.3s ease-out;
+    height: auto;
+    width: 80%;
+    margin-bottom: 1rem;
+    @media screen and (max-width: $screen-sm){
+        margin: 0 10%;
+        flex-direction: column;
+        width: 80%;
+        flex-shrink: 0;
+        height: 80%;
+        scroll-snap-align: center;
+    }
     &:hover{
-        transform: scale(1.05);
+        transform: scale(1.01);
     }
     &__image{
-        width: 100%;
-        height: 8rem;
+        min-width: 40%;
+        height: 100%;
         background-size: cover;
+        background-position: center;
+        @media screen and (max-width: $screen-sm){
+            width: 100%;
+            height: 45%;
+        }
     }
     &__content{
-        padding: $spacing-base
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        padding: $spacing-base;
+        .desc{
+            flex-grow: 1;
+        }
     }
     &__link{
         display: flex;
         flex-direction: row;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         text-decoration: none;
         .link-icon{

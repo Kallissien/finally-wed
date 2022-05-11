@@ -2,7 +2,7 @@
   <main>
     <l-col-full>
       <article class="col-full__content">
-        <h1 class="text-lg align-center">
+        <h1 class="align-center">
           <span v-if="!hasSubmittedForm">RSVP</span>
           <span v-if="hasSubmittedForm && isGoing">Thanks {{ firstName }}, we're looking forward to seeing you on the day!</span>
           <span v-if="hasSubmittedForm && !isGoing">Sorry to hear that {{ firstName }}, we hope to celebrate at another time!</span>
@@ -181,6 +181,9 @@ export default {
 </script>
 <style lang="scss">
 @import "@/assets/styles/variables.scss";
+.col-full__content{
+  overflow: auto;
+}
 .flex{
   display: flex;
   .row{

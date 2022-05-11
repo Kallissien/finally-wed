@@ -32,13 +32,14 @@ export default{
   height: 100vh;
   color: $text-color;
   overflow: hidden;
+  overscroll-behavior: none;
   @media screen and (max-width: $screen-sm) {
     overflow: auto;
   }
   main{
     height: 90vh;
     background: $white;
-    overflow: auto;
+    overflow: hidden;
   }
 }
 h1{

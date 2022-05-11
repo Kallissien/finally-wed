@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "@/views/HomeView.vue";
 import TravelView from "@/views/TravelView.vue";
-import SightsView from "@/views/SightsView.vue";
+import GiftListView from "@/views/GiftListView.vue";
 import RsvpView from "@/views/RsvpView.vue";
 
 const router = createRouter({
@@ -35,20 +35,20 @@ const router = createRouter({
         ],
       },
     },
-    // {
-    //   path: "/sightseeing",
-    //   name: "sightseeing",
-    //   component: SightsView,
-    //   meta: {
-    //     title: "Sightseeing",
-    //     metaTags: [
-    //       {
-    //         name: "description",
-    //         content: "What to do while you wait",
-    //       },
-    //     ],
-    //   },
-    // },
+    {
+      path: "/gifts",
+      name: "gifts",
+      component: GiftListView,
+      meta: {
+      title: "Gifts",
+      metaTags: [
+      {
+      name: "description",
+      content: "Our gift list",
+      },
+    ],
+      },
+      },
     {
       path: "/rsvp",
       name: "rsvp",

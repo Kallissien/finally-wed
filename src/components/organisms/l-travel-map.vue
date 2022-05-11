@@ -1,11 +1,8 @@
 <template>
   <article class="map-container">
-    <!-- <div class="info" style="height: 10%">
-      <span>Center: {{ center }}</span>
-      <span>Zoom: {{ zoom }}</span>
-      <span>Bounds: {{ bounds }}</span>
-    </div> -->
     <l-map
+      @ready="this.setMapObject"
+      ref="travelMap"
       class="map"
       :zoom="zoom"
       :center="center"
@@ -14,23 +11,36 @@
       @update:bounds="boundsUpdated"
     >
       <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
-      <l-marker :lat-lng="[55.205078, -6.240239]">
-        <l-icon class="venue-icon" :icon-url="venueIcon.iconUrl" :shadow-url="venueIcon.shadowUrl" :icon-size="venueIcon.iconSize" />
+      <l-marker
+        v-for="item in locationItems"
+        ref="markers"
+        :lat-lng="item.marker.latLng"
+      >
+        <l-icon
+          :icon-url="item.marker.iconUrl"
+          :icon-size="item.marker.iconSize" 
+        />
       </l-marker>
     </l-map>
   </article>
 </template>
 
 <script>
+import anime from 'animejs'
 import "leaflet/dist/leaflet.css"
-import { LMap, LTileLayer, LMarker, LIcon } from "@vue-leaflet/vue-leaflet";
+import { LMap, LTileLayer, LMarker, LIcon, LControl, LGeoJson } from "@vue-leaflet/vue-leaflet";
 
 export default {
   components: {
     LMap,
     LTileLayer,
     LMarker,
-    LIcon
+    LIcon,
+    LControl, 
+    LGeoJson
+  },
+  props:{
+    locationItems: Object
   },
   data() {
     return {
@@ -39,24 +49,7 @@ export default {
         '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
       zoom: 9,
       center: [55.205078, -6.240239],
-      bounds: null,
-      mapPoints: [
-        {
-          name: "Marine Hotel",
-          desc: "The Venue",
-          lat: "55.205078",
-          lng: "-6.240239",
-        },
-      ],
-      venueIcon:{
-        iconUrl: '/marker-venue.png',
-        //shadowUrl: '/marker-venue.png',
-        iconSize:     [38, 38], // size of the icon
-        shadowSize:   [50, 64], // size of the shadow
-        iconAnchor:   [0, 18], // point of the icon which will correspond to marker's location
-        shadowAnchor: [4, 62],  // the same for the shadow
-        popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-      }
+      bounds: null
     }
   },
   methods: {
@@ -73,27 +66,46 @@ export default {
       for(let i = 9 ; i < 12 ; i++){
         this.setZoom(i)
       }
+    },
+    animateMarker(element){
+      anime({
+        targets: element,
+        width: {
+          value: '-=20px', // 28 - 20 = '8px'
+          duration: 1800,
+          easing: 'easeInOutSine'
+        },
+        loop: true,
+        easing: 'easeInOutSine'
+      })
+    },
+    setMapObject(){
+      console.log("Set map object: " + this.$refs.map.mapObject)
+    },
+    moveToPosition(position){
+      this.center = position;
     }
   },
-  async beforeMount() {
-    // HERE is where to load Leaflet components!
-    const { circleMarker } = await import("leaflet/dist/leaflet-src.esm");
-
-    // And now the Leaflet circleMarker function can be used by the options:
-    this.geojsonOptions.pointToLayer = (feature, latLng) =>
-      circleMarker(latLng, { radius: 8 });
-    this.mapIsReady = true;
-  },
-};
+  mounted(){
+      this.$nextTick(() => {
+        this.$refs.travelMap.$mapPromise.then(() => {
+            this.$refs.travelMap.$mapObject.fitBounds(this.googleMapBounds);
+            console.log("Set map object: " + this.$refs.travelMap.mapObject)
+        })
+    })
+  }
+}
 </script>
 <style lang="scss">
 .map-container{
-  z-index: 1;
   height: 100%;
   width: 100%;
   .map{
     width: 100%;
     height: 100%;
+  }
+  .leaflet-top.leaflet-left {
+    display: none;
   }
 }
 </style>
