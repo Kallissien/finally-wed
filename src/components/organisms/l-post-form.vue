@@ -1,5 +1,15 @@
 <template>
     <p>Thanks so much!</p>
     <p>Check back later for some top sightseeing tips!</p>
-    <p>P.S - I haven't got persistent storage, so the RSVP form will ask for your details again, do not worry, we've got it all saved!</p>
+    <p>If you want to submit another RSVP, click the button below:</p>
+    <button @click="this.clearStorage">Submit another RSVP</button>
 </template>
+<script>
+export default{
+    methods: {
+        clearStorage(){
+            localStorage.clear()
+        }
+    }
+}
+</script>
