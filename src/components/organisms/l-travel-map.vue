@@ -24,7 +24,6 @@
       </l-marker>
     </l-map>
   </article>
-  <button @click="moveToPosition([54.66255927541024, -6.217741894521833])">Click me</button>
 </template>
 
 <script>
@@ -40,7 +39,8 @@ export default {
     LIcon
   },
   props:{
-    locationItems: Object
+    locationItems: Array,
+    currentElement: Number
   },
   data() {
     return {
@@ -85,6 +85,11 @@ export default {
     },
     moveToPosition(position){
       this.mapObject.flyTo(position);
+    }
+  },
+  watch: {
+    currentElement (val, oldVal) {
+      this.moveToPosition(this.locationItems[val].marker.latLng)
     }
   },
   mounted(){

@@ -1,10 +1,10 @@
 <template>
   <main class="col-2">
     <l-col class="col__travel">
-      <l-travel-content @touchstart="this.updateVisibleCard(e)" :locationItems="travelData" />
+      <l-travel-content @touchend="this.updateVisibleCard()" @scroll="this.updateVisibleCard()" :locationItems="travelData" />
     </l-col>
     <l-col class="col__map">
-      <l-travel-map :locationItems="travelData" />
+      <l-travel-map :locationItems="travelData" :currentElement="currentElement" />
     </l-col>
   </main>
 </template>
@@ -20,9 +20,9 @@ export default {
   },  
   data(){
     return{
-      travelData:{
-        venue:{
-          id:'location1',
+      travelData:[
+        {
+          id:'venue',
           locationName:"Marine Hotel Ballycastle",
           locationDescription: "Both the ceremony and the reception are being held here.",
           imageUrl:"/img/marine-hotel.jpeg",
@@ -39,7 +39,8 @@ export default {
             popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
           }
         },
-        airport:{
+        {
+          id:'airport',
           locationName:"Belfast International Airport",
           locationDescription: "Closest airport to the north coast",
           imageUrl:"/img/airport.jpeg",
@@ -56,7 +57,8 @@ export default {
             popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
           }
         },
-      }
+      ],
+      currentElement: 0
     }
     },
     methods:{
@@ -69,8 +71,16 @@ export default {
           rect.right <= (window.innerWidth || document.documentElement.clientWidth)
         );
       },
-      updateVisibleCard(event){
-        console.log(this.isInViewport(event.target))
+      updateVisibleCard(){
+        let id = 0
+        this.travelData.forEach(element => {
+          let currentElement = document.getElementById(element.id)
+          if(this.isInViewport(currentElement)){
+            this.currentElement = id
+            console.log(id)
+          }
+          id++
+        })
       }
     },
     mounted(){
@@ -81,6 +91,7 @@ export default {
 <style lang="scss">
 @import '@/assets/styles/variables.scss';
 .col-2{
+  overscroll-behavior: none;
   flex-direction: row;
   @media(max-width: $screen-sm){
     flex-direction: column-reverse;

@@ -22,7 +22,7 @@ export default {
     LTravelCard
   },
   props:{
-    locationItems: Object
+    locationItems: Array
   }
 }
 </script>
