@@ -128,6 +128,7 @@ export default {
 @import '@/assets/styles/variables.scss';
 .menu{
     border: none;
+    margin-bottom: 5rem;
     .form-header{
         margin-bottom: 3rem;
     }

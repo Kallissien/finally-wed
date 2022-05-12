@@ -93,7 +93,6 @@ export default {
 <style lang="scss">
 @import '@/assets/styles/variables.scss';
 .col-2{
-  overscroll-behavior: none;
   flex-direction: row;
   @media(max-width: $screen-sm){
     flex-direction: column-reverse;
