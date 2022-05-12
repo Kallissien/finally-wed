@@ -31,7 +31,6 @@ export default{
   width: 100vw;
   height: 100vh;
   color: $text-color;
-  overflow: hidden;
   @media screen and (max-width: $screen-sm) {
     overflow: auto;
   }
