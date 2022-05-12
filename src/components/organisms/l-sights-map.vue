@@ -14,7 +14,7 @@
       @update:bounds="boundsUpdated"
     >
       <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
-      <l-marker :lat-lng="[55.205078, -6.240239]"></l-marker>
+      <l-marker :lat-lng="[55.205078, -6.240239]" :icon="greenIcon"></l-marker>
     </l-map>
   </div>
 </template>
@@ -26,7 +26,7 @@ export default {
   components: {
     LMap,
     LTileLayer,
-    LMarker,
+    LMarker
   },
   data() {
     return {
@@ -44,6 +44,15 @@ export default {
           lng: "-6.240239",
         },
       ],
+      greenIcon: {
+        iconUrl: '@/assets/marker.png',
+        shadowUrl: '@/assets/marker.png',
+        iconSize:     [38, 95], // size of the icon
+        shadowSize:   [50, 64], // size of the shadow
+        iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+        shadowAnchor: [4, 62],  // the same for the shadow
+        popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+      }
     };
   },
   methods: {

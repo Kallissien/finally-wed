@@ -1805,6 +1805,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"animejs@npm:^3.2.1":
+  version: 3.2.1
+  resolution: "animejs@npm:3.2.1"
+  checksum: 6939171bed17d6b28307747e564d33e93312c26169b98498c833117d86f174ce7a318469bfd81716c223860a6d13bd76b761e79e765b86b2a2f851963caaa851
+  languageName: node
+  linkType: hard
+
 "ansi-align@npm:^3.0.0":
   version: 3.0.1
   resolution: "ansi-align@npm:3.0.1"
@@ -4888,6 +4895,7 @@ __metadata:
     "@vitejs/plugin-vue": ^2.2.2
     "@vue-leaflet/vue-leaflet": ^0.6.1
     "@vue/eslint-config-prettier": ^7.0.0
+    animejs: ^3.2.1
     axios: ^0.27.2
     eslint: ^8.5.0
     eslint-plugin-vue: ^8.2.0

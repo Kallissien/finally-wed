@@ -4,8 +4,7 @@ import LDivider from "../atoms/l-divider.vue";
 <template>
   <nav>
       <RouterLink to="/">Home</RouterLink>
-      <!-- <RouterLink to="/travel">Travel</RouterLink> -->
-      <!-- <RouterLink to="/sightseeing">Sightseeing</RouterLink> -->
+      <RouterLink to="/travel">Travel</RouterLink>
       <RouterLink to="/rsvp">RSVP</RouterLink>
   </nav>
 </template>

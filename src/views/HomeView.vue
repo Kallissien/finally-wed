@@ -1,7 +1,6 @@
 <script setup>
 import LHomeContent from "@/components/organisms/l-home-content.vue";
 import LCol from "../components/molecules/l-col.vue";
-import LNav from "../components/molecules/l-nav.vue";
 </script>
 
 <template>
@@ -9,9 +8,6 @@ import LNav from "../components/molecules/l-nav.vue";
     <l-col>
       <l-home-content />
     </l-col>
-    <!-- <l-col class="image-right">
-      <article class="col-right"></article>
-    </l-col> -->
   </main>
 </template>
 <style lang="scss">

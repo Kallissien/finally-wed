@@ -9,6 +9,7 @@ export default{
     methods: {
         clearStorage(){
             localStorage.clear()
+            window.location.reload()
         }
     }
 }

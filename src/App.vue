@@ -32,22 +32,30 @@ export default{
   height: 100vh;
   color: $text-color;
   overflow: hidden;
+  overscroll-behavior: none;
   @media screen and (max-width: $screen-sm) {
     overflow: auto;
   }
   main{
     height: 90vh;
     background: $white;
-    overflow: auto;
+    overflow: hidden;
   }
 }
 h1{
   font-size: $text-heading;
-  margin: $spacing-base;
+  line-height: 1.2em;
+}
+.text-base{
+  font-size: $text-base;
+}
+.align-center{
+  text-align: center;
 }
 .text-lg {
   font-size: 1.5rem;
   text-align: center;
+  line-height: 1.2em;
 }
 .image-right {
   background-image: url("@/assets/wedding-pic-bw.png");
@@ -55,8 +63,8 @@ h1{
   background-position: center;
 }
 .logo {
-  width: 20rem;
-  height: 20rem;
+  width: 80%;
+  margin-bottom: $spacing-lg;
 }
 @media screen and (max-width: 800px) {
   .flex-container {
