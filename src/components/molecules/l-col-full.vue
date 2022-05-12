@@ -25,6 +25,7 @@ import lNav from "./l-nav.vue";
     flex-grow: 1;
     padding: 2rem;
     width: 100%;
+    height: 100%;
   }
 }
 </style>
