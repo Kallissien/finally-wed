@@ -14,8 +14,8 @@
 <style lang="scss">
 @import '@/assets/styles/variables.scss';
 .header-img{
-    background: url('/img/seychelles.jpeg');
-    background-size: fit;
+    background: url('/img/seychelles-night.jpeg');
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     @media screen and (max-width: $screen-sm){

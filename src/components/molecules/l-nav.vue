@@ -6,7 +6,6 @@ import LDivider from "../atoms/l-divider.vue";
       <RouterLink to="/">Home</RouterLink>
       <RouterLink to="/travel">Travel</RouterLink>
       <RouterLink to="/rsvp">RSVP</RouterLink>
-      <RouterLink to="/gifts">Gifts</RouterLink>
   </nav>
 </template>
 <style lang="scss">

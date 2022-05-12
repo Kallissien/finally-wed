@@ -5,7 +5,7 @@
         Gift List
     </h1>
     <div class="content">
-        <p>
+        <p class="text-base align-center">
             We've decided not to have a traditional gift list, as we've 
         </p>
         <p class="text-base align-center">
