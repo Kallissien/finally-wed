@@ -1,7 +1,7 @@
 <template>
   <main class="col-2">
     <l-col class="col__travel">
-      <l-travel-content @touchend="this.updateVisibleCard()" @scroll="this.updateVisibleCard()" :locationItems="travelData" />
+      <l-travel-content :locationItems="travelData" />
     </l-col>
     <l-col class="col__map">
       <l-travel-map :locationItems="travelData" :currentElement="currentElement" />
@@ -24,7 +24,7 @@ export default {
         {
           id:'venue',
           locationName:"Marine Hotel Ballycastle",
-          locationDescription: "Both the ceremony and the reception are being held here.",
+          locationDescription: "The venue for the ceremony and the reception. There will be a break while dinner is being prepared so you can roam the beach and pick up some ice cream from Mauds!",
           imageUrl:"/img/marine-hotel.jpeg",
           linkText: "See more",
           locationLink: "https://marinehotelballycastle.com",
@@ -42,7 +42,7 @@ export default {
         {
           id:'airport',
           locationName:"Belfast International Airport",
-          locationDescription: "Closest airport to the north coast",
+          locationDescription: "The best way to get to the venue is to fly here and rent a car or taxi to Ballycastle. You can get a bus to Antrim and from there a train to Ballymena, but it will take a fair few hours!",
           imageUrl:"/img/airport.jpeg",
           linkText: "Book a flight",
           locationLink: "https://www.belfastairport.com",
@@ -66,7 +66,7 @@ export default {
         const rect = element.getBoundingClientRect();
         return (
           rect.top >= 0 &&
-          rect.left >= 0 &&
+          rect.left+ rect.width >= 0 &&
           rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
           rect.right <= (window.innerWidth || document.documentElement.clientWidth)
         );
@@ -77,14 +77,16 @@ export default {
           let currentElement = document.getElementById(element.id)
           if(this.isInViewport(currentElement)){
             this.currentElement = id
-            console.log(id)
           }
           id++
         })
       }
     },
     mounted(){
-      
+      const cardList = document.querySelector('.card-list');
+      cardList.addEventListener('scroll', ()=>{
+        this.updateVisibleCard()
+    })
   }
 }
 </script>
