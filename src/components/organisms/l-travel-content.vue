@@ -6,6 +6,7 @@
       <l-travel-card 
         v-for="item in locationItems"
         :bind="item.id"
+        :id="item.id"
         :locationName="item.locationName"
         :locationDescription="item.locationDescription"
         :imageUrl="item.imageUrl"

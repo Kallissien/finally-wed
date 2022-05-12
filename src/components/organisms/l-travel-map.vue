@@ -4,11 +4,12 @@
       @ready="this.setMapObject"
       ref="travelMap"
       class="map"
-      :zoom="zoom"
+      v-model:zoom="zoom"
       :center="center"
       @update:zoom="zoomUpdated"
       @update:center="centerUpdated"
       @update:bounds="boundsUpdated"
+      @touchstart.prevent="setMapObject"
     >
       <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
       <l-marker
@@ -23,21 +24,20 @@
       </l-marker>
     </l-map>
   </article>
+  <button @click="moveToPosition([54.66255927541024, -6.217741894521833])">Click me</button>
 </template>
 
 <script>
 import anime from 'animejs'
 import "leaflet/dist/leaflet.css"
-import { LMap, LTileLayer, LMarker, LIcon, LControl, LGeoJson } from "@vue-leaflet/vue-leaflet";
+import { LMap, LTileLayer, LMarker, LIcon } from "@vue-leaflet/vue-leaflet";
 
 export default {
   components: {
     LMap,
     LTileLayer,
     LMarker,
-    LIcon,
-    LControl, 
-    LGeoJson
+    LIcon
   },
   props:{
     locationItems: Object
@@ -49,7 +49,8 @@ export default {
         '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
       zoom: 9,
       center: [55.205078, -6.240239],
-      bounds: null
+      bounds: null,
+      mapObject: Object
     }
   },
   methods: {
@@ -80,19 +81,13 @@ export default {
       })
     },
     setMapObject(){
-      console.log("Set map object: " + this.$refs.map.mapObject)
+      this.mapObject = this.$refs.travelMap.leafletObject;
     },
     moveToPosition(position){
-      this.center = position;
+      this.mapObject.flyTo(position);
     }
   },
   mounted(){
-      this.$nextTick(() => {
-        this.$refs.travelMap.$mapPromise.then(() => {
-            this.$refs.travelMap.$mapObject.fitBounds(this.googleMapBounds);
-            console.log("Set map object: " + this.$refs.travelMap.mapObject)
-        })
-    })
   }
 }
 </script>
@@ -100,6 +95,9 @@ export default {
 .map-container{
   height: 100%;
   width: 100%;
+  z-index: 1;
+  pointer-events: none;
+  user-select: none;
   .map{
     width: 100%;
     height: 100%;
@@ -107,5 +105,9 @@ export default {
   .leaflet-top.leaflet-left {
     display: none;
   }
+}
+.leaflet-marker-icon{
+  pointer-events: none !important;
+  user-select: none !important;
 }
 </style>

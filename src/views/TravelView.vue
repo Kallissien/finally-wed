@@ -1,7 +1,7 @@
 <template>
   <main class="col-2">
     <l-col class="col__travel">
-      <l-travel-content :locationItems="travelData" />
+      <l-travel-content @touchstart="this.updateVisibleCard(e)" :locationItems="travelData" />
     </l-col>
     <l-col class="col__map">
       <l-travel-map :locationItems="travelData" />
@@ -22,6 +22,7 @@ export default {
     return{
       travelData:{
         venue:{
+          id:'location1',
           locationName:"Marine Hotel Ballycastle",
           locationDescription: "Both the ceremony and the reception are being held here.",
           imageUrl:"/img/marine-hotel.jpeg",
@@ -57,6 +58,23 @@ export default {
         },
       }
     }
+    },
+    methods:{
+      isInViewport(element) {
+        const rect = element.getBoundingClientRect();
+        return (
+          rect.top >= 0 &&
+          rect.left >= 0 &&
+          rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+          rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+      },
+      updateVisibleCard(event){
+        console.log(this.isInViewport(event.target))
+      }
+    },
+    mounted(){
+      
   }
 }
 </script>
