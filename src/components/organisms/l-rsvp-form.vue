@@ -88,7 +88,7 @@ form {
   .attending {
     font-size: 1.3rem;
   }
-
+}
   button {
     background: $primary-100;
     color: $primary-200;
@@ -103,5 +103,4 @@ form {
 
     text-transform: uppercase;
   }
-}
 </style>

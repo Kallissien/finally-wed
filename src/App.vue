@@ -28,8 +28,8 @@ export default{
 @import "@/assets/styles/base.css";
 @import "@/assets/styles/variables.scss";
 #app{
-  width: 100vw;
-  height: 100vh;
+  max-width: 100vw;
+  max-height: 100vh;
   color: $text-color;
   @media screen and (max-width: $screen-sm) {
     overflow: auto;

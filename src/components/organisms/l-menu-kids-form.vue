@@ -1,7 +1,10 @@
 <template>
     <form class="form col menu" name="menu-kids" method="POST" type="hidden">
         <p class="form-header">Please fill out your menu options</p>
-
+        <div class="form-section col input-item">
+            <label for="name">Name</label>
+            <input class="input-field" name="name" type="text" v-model="userName">
+        </div>
         <div class="form-section col" v-for="course in menu" :key="course.id">
 
             <p class="menu-course_header">{{ course.name }}</p>
@@ -27,6 +30,7 @@ export default {
     },
     data(){
         return{
+            userName : "Enter Name",
             menu: {
                 starter: {
                 id: 1,
@@ -127,9 +131,19 @@ export default {
         }
     },
     methods: {
-    updateMenuOptions(e){
-      this.optionsStore.updatedMenu(e.target.name, e.target.id)
+        fetchName(){
+            let storeUserName = this.optionsStore.getName
+            if(storeUserName !== "Not Set"){
+                this.userName = storeUserName
+            }
+        },
+        updateMenuOptions(e){
+            console.log("hello")
+        this.optionsStore.updatedMenu(e.target.name, e.target.id)
     },
-  }
+    },
+    mounted(){
+        this.fetchName()
+    }
 }
 </script>

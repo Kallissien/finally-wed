@@ -1,7 +1,10 @@
 <template>
     <form class="form col menu" name="menu-adult" method="POST" type="hidden" action="">
         <p class="form-header">Please fill out your menu options</p>
-        <input name="name" type="text" v-model="userName">
+        <div class="form-section col input-item">
+            <label for="name">Name</label>
+            <input class="input-field" name="name" type="text" v-model="userName">
+        </div>
         <div class="form-section col" v-for="course in menu" :key="course.id">
             <p class="menu-course_header">{{ course.name }}</p>
             <label class="input-item" v-for="data in course.options" :key="data.id" :iName="data.name">
@@ -128,9 +131,9 @@ export default {
             console.log("hello")
         this.optionsStore.updatedMenu(e.target.name, e.target.id)
     },
+    },
     mounted(){
         this.fetchName()
-    }
     }
 }
 </script>
